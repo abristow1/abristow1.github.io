@@ -27,6 +27,8 @@
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
 
+    var bareEarth = L.esri.tiledMapLayer({url: "https://pagis.org/arcgis/rest/services/MAPS/Terrain_BareEarth/MapServer"});
+
     var nhd_medium_res_flowline_usgs = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
@@ -36,11 +38,13 @@
       style: {
         color: '#A1CAF1',
         weight: 2
-      }
+      },
+      simplifyFactor: 0
     });
 
     var baseMaps = {
       "Aerial": imagery
+      "Bare Earth": bareEarth
     };
 
     var overlayMaps = {
