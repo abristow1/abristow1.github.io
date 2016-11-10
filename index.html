@@ -12,6 +12,11 @@
 </head>
 
 <body>
+   
+     <!-- JS -->
+     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+     <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
+  
 
   <div id="mapid"></div>
 
@@ -45,13 +50,8 @@
 
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: true
-    }).addTo(map);
+    }).addTo(mymap);
   </script>
-
-  <!-- JS -->
-  <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-  <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
-  
    
 </body>
 </html>
