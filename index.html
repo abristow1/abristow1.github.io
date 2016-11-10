@@ -1,7 +1,21 @@
 <!DOCTYPE html>
 <html>
+<head>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+   <style>
+     #mapid {
+       height: 180px;
+     }
+   </style>
+</head>
 <body>
-<h1>Hello World</h1>
-<p>I'm hosted with GitHub Pages.</p>
+  <div id="mapid">
+    <script>
+      var mymap = L.map('mapid').setView([34.747, -92.312], 13);
+    </script>
+  </div>
+  
+<!-- JS -->
+<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
 </body>
 </html>
