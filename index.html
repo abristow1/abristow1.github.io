@@ -1,5 +1,7 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
    <style>
@@ -8,18 +10,47 @@
      }
    </style>
 </head>
+
 <body>
-   <!-- JS -->
-   <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-   
+
   <div id="mapid"></div>
-    <script>
-      var mymap = L.map('mapid').setView([34.747, -92.312], 14);
-       
-      var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-         attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-      }).addTo(mymap);
-    </script>
+
+  <script>
+    var mymap = L.map('mapid').setView([34.747, -92.312], 14);
+     
+
+    var imagery = L.esri.basemapLayer('Imagery').addTo(map);
+    var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(map);
+
+    var nhd_medium_res_flowline_usgs = L.esri.featureLayer({
+      onEachFeature: function (feature, layer)
+      {
+        layer.bindPopup(feature.properties.gnis_name)
+      },
+      url: 'http://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Water/FeatureServer/12',
+      style: {
+        color: '#A1CAF1',
+        weight: 2
+      },
+      simplifyFactor: 0
+    });
+
+    var baseMaps = {
+      "Aerial": imagery
+    };
+
+    var overlayMaps = {
+      "Streams": nhd_medium_res_flowline_usgs
+    };
+
+    L.control.layers(baseMaps, overlayMaps, {
+      collapsed: true
+    }).addTo(map);
+  </script>
+
+  <!-- JS -->
+  <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
   
    
 </body>
