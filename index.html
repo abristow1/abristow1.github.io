@@ -17,6 +17,7 @@
      <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
      <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
+     <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
 
   <div id="mapid"></div>
 
@@ -27,12 +28,6 @@
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
 
-    var bareEarth = L.esri.dynamicMapLayer({
-      url: 'http://www.pagis.org/arcgis/rest/services/MAPS/Terrain_BareEarth/MapServer',
-      opacity: 0.7
-    });
-
-    var bareEarthTwo = L.esri.tiledMapLayer({url: "http://www.pagis.org/arcgis/rest/services/MAPS/Terrain_BareEarth/MapServer/WMTS?"});
      
     var nhd_medium_res_flowline_usgs = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
@@ -48,9 +43,7 @@
     });
 
     var baseMaps = {
-      "Aerial": imagery,
-      "Bare Earth": bareEarth,
-      "Bare Earth 2": bareEarthTwo
+      "Aerial": imagery
     };
 
     var overlayMaps = {
@@ -60,6 +53,12 @@
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: true
     }).addTo(mymap);
+     
+    var runLayer = omnivore.kml('test.kml')
+    .on('ready', function() {
+        map.fitBounds(runLayer.getBounds());
+    })
+    .addTo(map);
   </script>
    
 </body>
