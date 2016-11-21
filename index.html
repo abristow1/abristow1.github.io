@@ -54,7 +54,7 @@
       collapsed: true
     }).addTo(mymap);
      
-    var runLayer = omnivore.kml('test.kml')
+    var runLayer = omnivore.kml('bare_earth.kml')
     .on('ready', function() {
         mymap.fitBounds(runLayer.getBounds());
     })
