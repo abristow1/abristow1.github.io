@@ -34,7 +34,7 @@
       {
         layer.bindPopup(feature.properties.gnis_name)
       },
-      url: 'http://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Water/FeatureServer/12',
+      url: 'https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Water/FeatureServer/12',
       style: {
         color: '#A1CAF1',
         weight: 2
@@ -43,7 +43,8 @@
     });
 
     var baseMaps = {
-      "Aerial": imagery
+      "Aerial": imagery,
+      "BareEarth": runLayer
     };
 
     var overlayMaps = {
@@ -54,7 +55,7 @@
       collapsed: true
     }).addTo(mymap);
      
-    var runLayer = omnivore.kml('bare_earth.kml').addTo(mymap);
+    var runLayer = omnivore.kml('bare_earth.kml');
   </script>
    
 </body>
