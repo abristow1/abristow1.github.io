@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kml xmlns:atom="http://www.w3.org/2005/Atom" xmlns="http://www.opengis.net/kml/2.2"> <NetworkLink>
 <open>1</open>
-<name>test</name>
+<name>bare_earth</name>
 <LookAt>
 <longitude>-92.39705608773443</longitude>
 <latitude>34.875139171119685</latitude>
@@ -9,7 +9,7 @@
 </LookAt>
 <Link>
 <viewRefreshMode>onRequest</viewRefreshMode>
-<href>http://www.pagis.org/arcgis/services/MAPS/Terrain_BareEarth/MapServer/KmlServer?Composite=false&amp;LayerIDs=1%2C2%2C3%2C4</href>
+<href>https://www.pagis.org/arcgis/services/MAPS/Terrain_BareEarth/MapServer/KmlServer?Composite=false&amp;LayerIDs=1%2C2%2C3%2C4</href>
 <viewFormat>BBOX=[bboxWest],[bboxSouth],[bboxEast],[bboxNorth];CAMERA=[lookatLon],[lookatLat],[lookatRange],[lookatTilt],[lookatHeading];VIEW=[horizFov],[vertFov],[horizPixels],[vertPixels],[terrainEnabled]</viewFormat>
 </Link>
 </NetworkLink>
