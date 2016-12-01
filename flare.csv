@@ -8,3 +8,9 @@ leaflet.plugins.LeafletMeasure,
 leaflet.commands,
 leaflet.commands.set Zoom(),
 leaflet.commands.on Click,
+django,
+django.plugins,
+django.plugins.Django Leaflet
+django.plugins.Django Registration Redux
+django.plugins.Sentry
+django.plugins.Django-geojson
