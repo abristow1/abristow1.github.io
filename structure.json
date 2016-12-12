@@ -22,7 +22,7 @@
 				{
 					"name": "2.4.1 - Logical Consistency",
 					"children": [
-						{"name": " Refers to the internal consistency of the data structure, and particularly applies to topological consistency. This Standard's intent is to ensure the ability to generate seamless digital mapping products within a project area. tests for logical consistency shall be performed that verify topology validity prior to submission to the NSDI."}
+						{"name": " ."}
 					]
 					},
 				{"name": "2.4.2 - Edge Matching"},
