@@ -1,0 +1,12 @@
+{
+	"name": "Wetlands Mapping Standard",
+	"children": [{
+		"name": "Imagery",
+		"name": "Classification",
+		"name": "Accuracy",
+		"name": "Data Verification",
+		"name": "Datum and Projection",
+		"name": "Metadata",
+		"name": "FWS Coordination and Quality Control"
+	}]
+}
