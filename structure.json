@@ -2,17 +2,30 @@
 	"name": "Wetlands Mapping Standard",
 	"children": [
 		{
-			"name": "Imagery",
+			"name": "2.1 - Imagery",
 			"children": [
-				{"name": "Source Imagery"},
-				{"name": "Base Imagery"}
+				{"name": "2.1.1 - Source Imagery"},
+				{"name": "2.1.2 - Base Imagery"}
 			]
 			},
-		{"name": "Classification"},
-		{"name": "Accuracy"},
-		{"name": "Data Verification"},
-		{"name": "Datum and Projection"},
-		{"name": "Metadata"},
-		{"name": "FWS Coordination and Quality Control"}
+		{"name": "2.2 - Classification"},
+		{
+			"name": "2.3 - Accuracy",
+			"children": [
+				{"name": "2.3.1 - Target Mapping Unit and Producers Accuracy"},
+				{"name": "2.3.2 - Horizontal Accuracy"}
+			]
+			},
+		{
+			"name": "2.4 - Data Verification",
+			"children": [
+				{"name": "2.4.1 - Logical Consistency"},
+				{"name": "2.4.2 - Edge Matching"},
+				{"name": "2.4.3 - Attribute Validity"}
+			]
+			},
+		{"name": "2.5 - Datum and Projection"},
+		{"name": "2.6 - Metadata"},
+		{"name": "2.7 - FWS Coordination and Quality Control"}
 	]
 }
