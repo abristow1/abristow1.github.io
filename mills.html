@@ -25,6 +25,7 @@
     var mymap = L.map('mapid').setView([34.605972, -92.484339], 15);
      
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
+    var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
      
     var nhd_medium_res_flowline_usgs = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
@@ -39,17 +40,30 @@
       simplifyFactor: 0
     });
      
-     var buildings = L.esri.featureLayer({
+     /*Building Footprints*/
+     var building_footprints = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
-        layer.bindPopup(feature.properties.office_loc)
+        layer.bindPopup("Parcel ID: " + feature.properties.parcel_id)
       },
       url: 'http://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/21',
       style: {
         color: '#F2F3F4',
         weight: 2
+      }
+    });
+     
+     /*Parcels*/
+     var parcels = L.esri.featureLayer({
+      onEachFeature: function (feature, layer)
+      {
+        layer.bindPopup("Owner Name: " + feature.properties.OW_NAME)
       },
-      simplifyFactor: 1
+      url: 'http://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/23',
+      style: {
+        color: '#F3C300',
+        weight: 2
+      }
     });
      
     
@@ -60,7 +74,8 @@
     };
     var overlayMaps = {
       "Streams": nhd_medium_res_flowline_usgs,
-      "Buildings": buildings
+      "Buildings": buildings_footprints,
+      "Parcels": parcels
     };
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: true
