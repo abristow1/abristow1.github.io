@@ -71,6 +71,7 @@ style: function (feature) {
 				+ "<table>";
       layer.on({
         click: function (e) {
+          layer.bindPopup(parcelsContent);
         }
       });
 
