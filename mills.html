@@ -24,7 +24,7 @@
   <script>
     var mymap = L.map('mapid').setView([34.605972, -484339], 15);
      
-    var bryant = L.esri.tiledMapLayer({url: "http://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer"}).addTo(mymap);
+    var bryant = L.esri.RasterLayer({url: "http://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer/11"}).addTo(mymap);
      
     var nhd_medium_res_flowline_usgs = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
