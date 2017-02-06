@@ -22,7 +22,7 @@
   <div id="mapid"></div>
 
   <script>
-    var mymap = L.map('mapid').setView([34.605972, -484339], 15);
+    var mymap = L.map('mapid').setView([34.605972, -92.484339], 15);
      
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
      
@@ -39,12 +39,28 @@
       simplifyFactor: 0
     });
      
+     var buildings = L.esri.featureLayer({
+      onEachFeature: function (feature, layer)
+      {
+        layer.bindPopup(feature.properties.office_loc)
+      },
+      url: 'http://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/21',
+      style: {
+        color: '#F2F3F4',
+        weight: 2
+      },
+      simplifyFactor: 1
+    });
+     
+    
+     
     var runLayer = omnivore.kml('bare_earth.kml');
     var baseMaps = {
       "Imagery": imagery
     };
     var overlayMaps = {
-      "Streams": nhd_medium_res_flowline_usgs
+      "Streams": nhd_medium_res_flowline_usgs,
+      "Buildings": buildings
     };
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: true
