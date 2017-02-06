@@ -45,18 +45,59 @@
       }
     });
      
-     /*Parcels*/
-     var parcels = L.esri.featureLayer({
-      onEachFeature: function (feature, layer)
-      {
-        layer.bindPopup("Owner Name: " + feature.properties.Saline2.DBO.SalineCo_CAMA.OW_NAME)
+var parcelsLayer = L.geoJson(null);
+var parcels = L.geoJson(null, {
+  
+
+style: function (feature) {
+  return {
+    weight: 1,
+    opacity: 1,
+    color: '#F3C300',
+    fillColor: 'black',
+    fillOpacity: 0.2
+  };
+},
+	
+
+  
+  onEachFeature: function (feature, layer) {
+    if (feature.properties) {
+      var parcelsContent = "<table class='table table-striped table-bordered table-condensed'>" + 
+				"<tr><th>Owner Name</th><td>" + feature.properties.ow_name + "</td></tr>" 
+				+ "<tr><th>Owner Source Date</th><td>" + feature.properties.ow_src_dat + "</td></tr>" 
+				+ "<tr><th>Parcel ID</th><td>" + feature.properties.parcel_id + "</td></tr>" 
+				+ "<table>";
+      layer.on({
+        click: function (e) {
+          $("#feature-title").html('Parcel Info');
+          $("#feature-info").html(parcelsContent);
+          $("#featureModal").modal("show");
+        }
+      });
+
+    }
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 2,
+          fillOpacity: 0.8,
+          dashArray: '10, 5'
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
       },
-      url: 'http://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/23',
-      style: {
-        color: '#F3C300',
-        weight: 2
+      mouseout: function (e) {
+        parcels.resetStyle(e.target);
       }
-    });
+    });    
+  }
+});
+$.getJSON("parcels.geojson", function (data) {
+  parcels.addData(data);
+});
      
     
      
