@@ -33,6 +33,7 @@
      
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
+    var dem = L.esri.tiledMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});
          
      /*Building Footprints*/
      var building_footprints = L.esri.featureLayer({
@@ -120,7 +121,8 @@ L.geoJSON(segments, {
     /*Layer Control*/ 
     var runLayer = omnivore.kml('bare_earth.kml');
     var baseMaps = {
-      "Imagery": imagery
+      "Imagery": imagery,
+      "DEM": dem
     };
     var overlayMaps = {
       "Buildings": building_footprints,
