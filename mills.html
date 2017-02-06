@@ -6,7 +6,7 @@
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
    <style>
      #mapid {
-       height: 500px;
+       height: 800px;
      }
    </style>
 </head>
@@ -22,7 +22,7 @@
   <div id="mapid"></div>
 
   <script>
-    var mymap = L.map('mapid').setView([34.605972, -92.484339], 15);
+    var mymap = L.map('mapid').setView([34.605972, -92.484339], 18);
      
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
