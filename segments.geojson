@@ -1,4 +1,4 @@
-{
+segments = {
 "type": "FeatureCollection",
 "features": [
 { "type": "Feature", "properties": { "OBJECTID": 1, "Name": "Bryant Running", "Descript": null, "Type": "TRKPT", "Comment": null, "Symbol": null, "DateTimeS": "2017-01-10T17:47:26.000Z", "Elevation": 131.0, "DateTime": "2017\/01\/10", "SEGMENT": 1 }, "geometry": { "type": "Point", "coordinates": [ -92.492504249999968, 34.60709905300007, 131.0 ] } },
