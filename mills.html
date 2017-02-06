@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+   <style>
+     #mapid {
+       height: 500px;
+     }
+   </style>
+</head>
+
+<body>
+   
+     <!-- JS -->
+     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+     <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
+     <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
+     <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+  <div id="mapid"></div>
+
+  <script>
+    var mymap = L.map('mapid').setView([34.605972, -484339], 15);
+     
+    L.esri.imageMapLayer({
+      url: 'http://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer'
+    }).addTo(mymap);
+     
+    var nhd_medium_res_flowline_usgs = L.esri.featureLayer({
+      onEachFeature: function (feature, layer)
+      {
+        layer.bindPopup(feature.properties.gnis_name)
+      },
+      url: 'https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Water/FeatureServer/12',
+      style: {
+        color: '#A1CAF1',
+        weight: 2
+      },
+      simplifyFactor: 0
+    });
+     
+    var runLayer = omnivore.kml('bare_earth.kml');
+    var baseMaps = {};
+    var overlayMaps = {
+      "Streams": nhd_medium_res_flowline_usgs
+    };
+    L.control.layers(baseMaps, overlayMaps, {
+      collapsed: true
+    }).addTo(mymap);
+     
+    
+  </script>
+   
+</body>
+</html>
