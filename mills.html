@@ -6,7 +6,8 @@
    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
    <style>
      #mapid {
-       height: 800px;
+       height: 100%;
+       width: 100%;
      }
    </style>
 </head>
@@ -26,20 +27,7 @@
      
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
-     
-    var nhd_medium_res_flowline_usgs = L.esri.featureLayer({
-      onEachFeature: function (feature, layer)
-      {
-        layer.bindPopup(feature.properties.gnis_name)
-      },
-      url: 'https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Water/FeatureServer/12',
-      style: {
-        color: '#A1CAF1',
-        weight: 2
-      },
-      simplifyFactor: 0
-    });
-     
+         
      /*Building Footprints*/
      var building_footprints = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
@@ -57,7 +45,7 @@
      var parcels = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
-        layer.bindPopup("Owner Name: " + feature.properties.OW_NAME)
+        layer.bindPopup("Owner Name: " + feature.properties.Saline2.DBO.SalineCo_CAMA.OW_NAME)
       },
       url: 'http://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/23',
       style: {
@@ -73,7 +61,6 @@
       "Imagery": imagery
     };
     var overlayMaps = {
-      "Streams": nhd_medium_res_flowline_usgs,
       "Buildings": building_footprints,
       "Parcels": parcels
     };
