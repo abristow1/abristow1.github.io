@@ -116,13 +116,20 @@ L.geoJSON(segments, {
         return L.circleMarker(latlng, geojsonMarkerOptions);
     }
 }).addTo(mymap);
+
+/*Elevation overlay*/	  
+var imageUrl = "dem.bmp",
+    imageBounds = [[-92.4902, 34.6101],[-92.4779,34.6016]];
+	
+var elevation = L.imageOverlay(imageUrl, imageBounds);
      
     
     /*Layer Control*/ 
     var runLayer = omnivore.kml('bare_earth.kml');
     var baseMaps = {
       "Imagery": imagery,
-      "DEM": dem
+      "DEM": dem,
+      "Elevation": elevation
     };
     var overlayMaps = {
       "Buildings": building_footprints,
@@ -131,6 +138,7 @@ L.geoJSON(segments, {
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: true
     }).addTo(mymap);
+	  
      
     
   </script>
