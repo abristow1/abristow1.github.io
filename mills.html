@@ -128,12 +128,12 @@ var elevation = L.imageOverlay(imageUrl, imageBounds);
     var runLayer = omnivore.kml('bare_earth.kml');
     var baseMaps = {
       "Imagery": imagery,
-      "DEM": dem,
-      "Elevation": elevation
+      "DEM": dem
     };
     var overlayMaps = {
       "Buildings": building_footprints,
-      "Parcels": parcels
+      "Parcels": parcels,
+      "Elevation": elevation
     };
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: true
