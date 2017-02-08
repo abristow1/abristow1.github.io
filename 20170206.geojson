@@ -1,4 +1,4 @@
-20170206 = {
+segments = {
 "type": "FeatureCollection",
 "features": [
 { "type": "Feature", "properties": { "Name": "Lunch Ride", "DateTimeS": "2016-12-21T17:44:18Z", "Elevation": 129.3, "DateTime": "2016\/12\/21", "SEGMENT": 1 }, "geometry": { "type": "Point", "coordinates": [ -92.493748, 34.607065, 129.30000000000291 ] } },
