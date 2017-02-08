@@ -135,17 +135,13 @@
       "Elevation": elevation
     };
     L.control.layers(baseMaps, overlayMaps, {
-      collapsed: true
+      collapsed: false
     }).addTo(mymap);
 	  
 
-    function restackLayers() {
-        for (index = 0; index < layerOrder.length; index++) {
-            layerOrder[index].bringToFront();
-        }
-    }
-
-    mymap.on('overlayadd', restackLayers)
+    mymap.on("overlayadd", function (event) {
+      segments.bringToFront();
+    });
      
     
   </script>
