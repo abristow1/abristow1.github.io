@@ -55,7 +55,9 @@
 
     var query = L.esri.query({url:'https://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/48'});
 
-    var contours = query.within(bounds)({
+    query.within(bounds)
+
+     var contours = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
         layer.bindPopup("Elevation: " + feature.properties.ELEVATION)
