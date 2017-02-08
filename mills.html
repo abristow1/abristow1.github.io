@@ -115,7 +115,7 @@
       opacity: 1,
       fillOpacity: 0.8
   };
-  var segments = L.geoJSON(20170206, {
+  var segments = L.geoJSON(segments, {
       pointToLayer: function (feature, latlng) {
           return L.circleMarker(latlng, geojsonMarkerOptions);
       }
