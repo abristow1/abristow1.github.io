@@ -48,80 +48,79 @@
       }
     });
 
-/* Parcels */
-var parcelsLayer = L.geoJson(null);
-var parcels = L.geoJson(null, {
-  
 
-style: function (feature) {
-  return {
-    weight: 1,
-    opacity: 1,
-    color: '#F3C300',
-    fillColor: 'black',
-    fillOpacity: 0.2
-  };
-},
-	
-
-  
-  onEachFeature: function (feature, layer) {
-    if (feature.properties) {
-      var parcelsContent = "<table class='table table-striped table-bordered table-condensed'>" + 
-				"<tr><th>Owner Name</th><td>" + feature.properties.ow_name + "</td></tr>" 
-				+ "<tr><th>Owner Source Date</th><td>" + feature.properties.ow_src_dat + "</td></tr>" 
-				+ "<tr><th>Parcel ID</th><td>" + feature.properties.parcel_id + "</td></tr>" 
-				+ "<table>";
-      layer.on({
-        click: function (e) {
-          layer.bindPopup(parcelsContent);
+    /* Parcels */
+    var parcelsLayer = L.geoJson(null);
+    var parcels = L.geoJson(null, {
+      
+    style: function (feature) {
+      return {
+        weight: 1,
+        opacity: 1,
+        color: '#F3C300',
+        fillColor: 'black',
+        fillOpacity: 0.2
+      };
+    },
+    	
+      
+      onEachFeature: function (feature, layer) {
+        if (feature.properties) {
+          var parcelsContent = "<table class='table table-striped table-bordered table-condensed'>" + 
+    				"<tr><th>Owner Name</th><td>" + feature.properties.ow_name + "</td></tr>" 
+    				+ "<tr><th>Owner Source Date</th><td>" + feature.properties.ow_src_dat + "</td></tr>" 
+    				+ "<tr><th>Parcel ID</th><td>" + feature.properties.parcel_id + "</td></tr>" 
+    				+ "<table>";
+          layer.on({
+            click: function (e) {
+              layer.bindPopup(parcelsContent);
+            }
+          });
         }
-      });
-
-    }
-    layer.on({
-      mouseover: function (e) {
-        var layer = e.target;
-        layer.setStyle({
-          weight: 2,
-          fillOpacity: 0.8,
-          dashArray: '10, 5'
-        });
-        if (!L.Browser.ie && !L.Browser.opera) {
-          layer.bringToFront();
-        }
-      },
-      mouseout: function (e) {
-        parcels.resetStyle(e.target);
+        layer.on({
+          mouseover: function (e) {
+            var layer = e.target;
+            layer.setStyle({
+              weight: 2,
+              fillOpacity: 0.8,
+              dashArray: '10, 5'
+            });
+            if (!L.Browser.ie && !L.Browser.opera) {
+              layer.bringToFront();
+            }
+          },
+          mouseout: function (e) {
+            parcels.resetStyle(e.target);
+          }
+        });    
       }
-    });    
-  }
-});
-$.getJSON("parcels.geojson", function (data) {
-  parcels.addData(data);
-});
+    });
+    
+    $.getJSON("parcels.geojson", function (data) {
+      parcels.addData(data);
+      parcels.setZ
+    });
 
-/* Points */
-var geojsonMarkerOptions = {
-    radius: 8,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-};
+  /* Points */
+  var geojsonMarkerOptions = {
+      radius: 2,
+      fillColor: "#ff7800",
+      color: "#000",
+      weight: 1,
+      opacity: 1,
+      fillOpacity: 0.8
+  };
+  L.geoJSON(segments, {
+      pointToLayer: function (feature, latlng) {
+          return L.circleMarker(latlng, geojsonMarkerOptions);
+      }
+  }).addTo(mymap);
 
-L.geoJSON(segments, {
-    pointToLayer: function (feature, latlng) {
-        return L.circleMarker(latlng, geojsonMarkerOptions);
-    }
-}).addTo(mymap);
-
-/*Elevation overlay*/	  
-var imageUrl = "saline2.png",
-    imageBounds = [[34.618709020731, -92.50478665723], [34.592881718430, -92.46680533031]];
-	
-var elevation = L.imageOverlay(imageUrl, imageBounds);
+    /*Elevation overlay*/	  
+    var imageUrl = "saline2.png",
+        imageBounds = [[34.618709020731, -92.50478665723], [34.592881718430, -92.46680533031]];
+    	
+    var elevation = L.imageOverlay(imageUrl, imageBounds);
      
     
     /*Layer Control*/ 
@@ -139,6 +138,14 @@ var elevation = L.imageOverlay(imageUrl, imageBounds);
       collapsed: true
     }).addTo(mymap);
 	  
+
+    function restackLayers() {
+        for (index = 0; index < layerOrder.length; index++) {
+            layerOrder[index].bringToFront();
+        }
+    }
+
+    mymap.on('overlayadd', restackLayers)
      
     
   </script>
