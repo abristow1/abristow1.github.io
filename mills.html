@@ -49,10 +49,16 @@
     });
 
       /*Contours*/
-     var contours = L.esri.featureLayer({
+    var southWest = L.latLng(34.60153668384987,-92.49349951744081);
+    var northEast = L.latLng(34.60989051428379,-92.47290015220644);
+    var bounds = L.latLngBounds(southWest, northEast)
+
+    var query = L.esri.query({url:'https://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/48'});
+
+    var contours = query.within(bounds)({
       onEachFeature: function (feature, layer)
       {
-        layer.bindPopup("Elevation: " + feature.properties.elevation)
+        layer.bindPopup("Elevation: " + feature.properties.ELEVATION)
       },
       url: 'https://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/48'
     });
