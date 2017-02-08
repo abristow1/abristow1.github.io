@@ -85,9 +85,6 @@
               fillOpacity: 0.8,
               dashArray: '10, 5'
             });
-            if (!L.Browser.ie && !L.Browser.opera) {
-              layer.bringToFront();
-            }
           },
           mouseout: function (e) {
             parcels.resetStyle(e.target);
@@ -104,7 +101,7 @@
   /* Points */
   var geojsonMarkerOptions = {
       radius: 4,
-      fillColor: "#ff7800",
+      fillColor: "#A1CAF1",
       color: "#000",
       weight: 1,
       opacity: 1,
