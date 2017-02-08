@@ -41,7 +41,7 @@
       {
         layer.bindPopup("Parcel ID: " + feature.properties.parcel_id)
       },
-      url: 'http://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/21',
+      url: 'https://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/21',
       style: {
         color: '#F2F3F4',
         weight: 2
@@ -119,7 +119,7 @@ L.geoJSON(segments, {
 
 /*Elevation overlay*/	  
 var imageUrl = "saline2.png",
-    imageBounds = [[34.7964937568, -92.50478665716], [34.775185619395, -92.466803533024]];
+    imageBounds = [[34.618709020731, -92.50478665723], [34.592881718430, -92.46680533031]];
 	
 var elevation = L.imageOverlay(imageUrl, imageBounds);
      
