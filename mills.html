@@ -48,6 +48,15 @@
       }
     });
 
+      /*Contours*/
+     var contours = L.esri.featureLayer({
+      onEachFeature: function (feature, layer)
+      {
+        layer.bindPopup("Elevation: " + feature.properties.elevation)
+      },
+      url: 'https://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/48'
+    });
+
 
     /* Parcels */
     var parcelsLayer = L.geoJson(null);
@@ -128,6 +137,7 @@
     };
     var overlayMaps = {
       "Buildings": building_footprints,
+      "Contours": contours,
       "Parcels": parcels,
       "Elevation": elevation
     };
