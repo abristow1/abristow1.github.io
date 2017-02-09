@@ -47,14 +47,20 @@
         weight: 2
       }
     });
-     /* Contours */
-     var contours = L.esri.featureLayer({
-      onEachFeature: function (feature, layer)
-      {
-        layer.bindPopup("Elevation: " + feature.properties.ELEVATION)
-      },
-      url: 'https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer/88'
-    });
+/* Contours */
+var contoursLayer = L.geoJson(null);
+var contours = L.geoJson(null, {
+  style: function (feature){
+      return {
+        color: '#848482',
+        weight: '1.0',
+      }
+  }
+});
+$.getJSON("contours.geojson", function (data){
+  contours.addData(data);
+});
+
 
      /*Existing Trails*/
      
