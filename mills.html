@@ -53,7 +53,7 @@
       {
         layer.bindPopup("Elevation: " + feature.properties.ELEVATION)
       },
-      url: 'http://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer/88'
+      url: 'https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer/88'
     });
 
      /*Existing Trails*/
@@ -61,9 +61,9 @@
     var trails = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
-        layer.bindPopup("Parcel ID: " + feature.properties.parcel_id)
+        layer.bindPopup("")
       },
-      url: 'http://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer/44',
+      url: 'https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer/44',
       style: {
         color: '#848482',
         weight: '3.0',
