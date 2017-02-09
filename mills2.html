@@ -24,8 +24,6 @@
      <script src="segs.geojson"></script>
      <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
-     <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
-
   <div id="mapid"></div>
 
   <script>
@@ -37,7 +35,7 @@
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
     var dem = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});
 
-    var Stamen_Toner = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+    var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
       attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       subdomains: 'abcd',
       minZoom: 0,
@@ -45,10 +43,6 @@
       ext: 'png'
     });
 
-    var Gray = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
-      attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
-      maxZoom: 20
-    });
          
      /*Building Footprints*/
      var building_footprints = L.esri.featureLayer({
@@ -85,6 +79,20 @@
       contours.addData(data);
     });
 
+    /*Existing Trails Outline*/
+    var trails_outlineLayer = L.geoJson(null);
+    var trails_outline = L.geoJson(null, {
+      style: function (feature){
+        return {
+          color: "#222222",
+          weight:"5",
+        }
+      }
+    });
+    $.getJSON("mills_trails.geojson", function (data){
+      trails_outline.addData(data);
+    });
+    trails_outline.addTo(mymap);
 
     /*Existing Trails*/
     var trailsLayer = L.geoJson(null);
@@ -92,14 +100,15 @@
       style: function (feature){
         return {
           color: "#222222",
-          weight:"4.5",
-          fillColor: "#848482"
+          weight:"2.5",
         }
       }
     });
     $.getJSON("mills_trails.geojson", function (data){
       trails.addData(data);
     });
+    trails.addTo(mymap);
+
     /* Parcels */
     var parcelsLayer = L.geoJson(null);
     var parcels = L.geoJson(null, {
@@ -202,30 +211,28 @@
      
     
     /*Layer Control*/ 
-    var runLayer = omnivore.kml('bare_earth.kml');
     var baseMaps = {
       "Imagery": imagery,
       "Black & White": Stamen_Toner,
       "Saline County Lidar": dem,
-      "Gray": Gray
+      "Toner": Stamen_TonerLite
     };
     var overlayMaps = {
       "Buildings": building_footprints,
       "Contours": contours,
       "Parcels": parcels,
-      "Elevation": elevation,
-      "Existing Trails": trails
+      "Elevation": elevation
     };
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(mymap);
-    
 
     mymap.on("overlayadd", function (event) {
+      trails_outline.bringToFront();
+      trails.bringToFront();
       segments.bringToFront();
     });
-     
-    
+      
   </script>
    
 </body>
