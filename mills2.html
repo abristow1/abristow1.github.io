@@ -45,9 +45,10 @@
       ext: 'png'
     });
 
-    var Gray = L.esri.basemapLayer('Gray');
-    var DarkGray = L.esri.basemapLayer('DarkGray');
-    var ShadedRelief = L.esri.basemapLayer('ShadedRelief');
+    var Gray = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ',
+      maxZoom: 20
+    });
          
      /*Building Footprints*/
      var building_footprints = L.esri.featureLayer({
@@ -203,9 +204,7 @@
       "Imagery": imagery,
       "Black & White": Stamen_Toner,
       "Saline County Lidar": dem,
-      "Gray": Gray,
-      "DarkGray": DarkGray,
-      "ShadedRelief": ShadedRelief
+      "Gray": Gray
     };
     var overlayMaps = {
       "Buildings": building_footprints,
