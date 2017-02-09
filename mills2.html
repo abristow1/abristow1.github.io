@@ -93,6 +93,7 @@
       trails_outline.addData(data);
     });
     trails_outline.addTo(mymap);
+    trails_outline.bringToFront();
 
     /*Existing Trails*/
     var trailsLayer = L.geoJson(null);
@@ -108,6 +109,7 @@
       trails.addData(data);
     });
     trails.addTo(mymap);
+    trails.bringToFront();
 
     /* Parcels */
     var parcelsLayer = L.geoJson(null);
@@ -156,6 +158,22 @@
       parcels.setZ
     });
 
+    /*Segments Outline*/
+    var segments_outlineLayer = L.geoJson(null);
+    var segments_outline = L.geoJson(null, {
+      style: function (feature){
+        return {
+          color: "#848482",
+          weight:"2.5",
+        }
+      }
+    });
+    $.getJSON("segs.geojson", function (data){
+      segments_outline.addData(data);
+    });
+    segments_outline.addTo(mymap);
+    segments_outline.bringToFront();
+
     /* Segments */
     var segmentsLayer = L.geoJson(null);
     var segments = L.geoJson(null, {
@@ -163,37 +181,37 @@
         if (feature.properties.NAME == 1){
           return {
             color: '#DCD300',
-            weight: '3.0',
+            weight: '5.0',
           }
         }
         if (feature.properties.NAME == 2){
           return {
             color: '#E68FAC',
-            weight: '3.0',
+            weight: '5.0',
           }
         }
         if (feature.properties.NAME == 3){
           return {
             color: '#F38400',
-            weight: '3.0',
+            weight: '5.0',
           }
         }
         if (feature.properties.NAME == 4){
           return {
             color: '#A1CAF1',
-            weight: '3.0',
+            weight: '5.0',
           }
         }
         if (feature.properties.NAME == 5){
           return {
             color: '#F2F3F4',
-            weight: '3.0',
+            weight: '5.0',
           }
         }
         if (feature.properties.NAME == 6){
           return {
             color: '#BE0032',
-            weight: '3.0',
+            weight: '5.0',
           }
         }
       }
@@ -202,6 +220,7 @@
       segments.addData(data);
     });
     segments.addTo(mymap);
+    segments.bringToFront();
 
     /*Elevation overlay*/   
     var imageUrl = "saline2.png",
@@ -231,6 +250,9 @@
     });
     mymap.on("overlayadd", function (event) {
       trails.bringToFront();
+    });
+    mymap.on("overlayadd", function (event) {
+      segments_outline.bringToFront();
     });
     mymap.on("overlayadd", function (event) {
       segments.bringToFront();
