@@ -29,11 +29,21 @@
   <div id="mapid"></div>
 
   <script>
+
+    /* BASEMAPS */
     var mymap = L.map('mapid').setView([34.60571370411983, -92.48319983482362], 17);
      
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
     var dem = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});
+
+    var Stamen_Toner = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.{ext}', {
+      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      subdomains: 'abcd',
+      minZoom: 0,
+      maxZoom: 20,
+      ext: 'png'
+    });
          
      /*Building Footprints*/
      var building_footprints = L.esri.featureLayer({
@@ -47,31 +57,31 @@
         weight: 2
       }
     });
-/* Contours */
-var contoursLayer = L.geoJson(null);
-var contours = L.geoJson(null, {
-  style: function (feature){
-    if (feature.properties.LAYER == "INT"){
-      return {
-        color: '#DCD300',
-        weight: '3.0',
+
+    /* Contours */
+    var contoursLayer = L.geoJson(null);
+    var contours = L.geoJson(null, {
+      style: function (feature){
+        if (feature.properties.LAYER == "INT"){
+          return {
+            color: '#C28280',
+            weight: '2.0',
+          }
+        }
+        if (feature.properties.LAYER == "MJR"){
+          return {
+            color: '#008856',
+            weight: '2.5',
+          }
+        }
       }
-    }
-    if (feature.properties.LAYER == "MJR"){
-      return {
-        color: '#DCD300',
-        weight: '2.0',
-      }
-    }
-  }
-});
-$.getJSON("contours.geojson", function (data){
-  contours.addData(data);
-});
+    });
+    $.getJSON("contours.geojson", function (data){
+      contours.addData(data);
+    });
 
 
-     /*Existing Trails*/
-     
+    /*Existing Trails*/
     var trails = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
@@ -133,52 +143,53 @@ $.getJSON("contours.geojson", function (data){
       parcels.setZ
     });
 
-  /* Segments */
-var segmentsLayer = L.geoJson(null);
-var segments = L.geoJson(null, {
-  style: function (feature){
-    if (feature.properties.NAME == 1){
-      return {
-        color: '#DCD300',
-        weight: '3.0',
+    /* Segments */
+    var segmentsLayer = L.geoJson(null);
+    var segments = L.geoJson(null, {
+      style: function (feature){
+        if (feature.properties.NAME == 1){
+          return {
+            color: '#DCD300',
+            weight: '3.0',
+          }
+        }
+        if (feature.properties.NAME == 2){
+          return {
+            color: '#E68FAC',
+            weight: '3.0',
+          }
+        }
+        if (feature.properties.NAME == 3){
+          return {
+            color: '#F38400',
+            weight: '3.0',
+          }
+        }
+        if (feature.properties.NAME == 4){
+          return {
+            color: '#A1CAF1',
+            weight: '3.0',
+          }
+        }
+        if (feature.properties.NAME == 5){
+          return {
+            color: '#F2F3F4',
+            weight: '3.0',
+          }
+        }
+        if (feature.properties.NAME == 6){
+          return {
+            color: '#BE0032',
+            weight: '3.0',
+          }
+        }
       }
-    }
-    if (feature.properties.NAME == 2){
-      return {
-        color: '#E68FAC',
-        weight: '3.0',
-      }
-    }
-    if (feature.properties.NAME == 3){
-      return {
-        color: '#F38400',
-        weight: '3.0',
-      }
-    }
-    if (feature.properties.NAME == 4){
-      return {
-        color: '#A1CAF1',
-        weight: '3.0',
-      }
-    }
-    if (feature.properties.NAME == 5){
-      return {
-        color: '#F2F3F4',
-        weight: '3.0',
-      }
-    }
-    if (feature.properties.NAME == 6){
-      return {
-        color: '#BE0032',
-        weight: '3.0',
-      }
-    }
-  }
-});
-$.getJSON("segs.geojson", function (data){
-  segments.addData(data);
-});
-segments.addTo(mymap);
+    });
+    $.getJSON("segs.geojson", function (data){
+      segments.addData(data);
+    });
+    segments.addTo(mymap);
+
     /*Elevation overlay*/   
     var imageUrl = "saline2.png",
         imageBounds = [[34.618709020731, -92.50478665723], [34.592881718430, -92.46680533031]];
@@ -190,7 +201,8 @@ segments.addTo(mymap);
     var runLayer = omnivore.kml('bare_earth.kml');
     var baseMaps = {
       "Imagery": imagery,
-      "DEM": dem
+      "Black & White": Stamen_Toner
+      "Saline County Lidar": dem
     };
     var overlayMaps = {
       "Buildings": building_footprints,
