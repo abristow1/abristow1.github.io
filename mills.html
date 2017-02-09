@@ -113,7 +113,37 @@ var segments = L.geoJson(null, {
     if (feature.properties.NAME == 1){
       return {
         color: '#F3C300',
-        weight: '1.0',
+        weight: '2.0',
+      }
+    }
+    if (feature.properties.NAME == 2){
+      return {
+        color: '#875692',
+        weight: '2.0',
+      }
+    }
+    if (feature.properties.NAME == 3){
+      return {
+        color: '#F38400',
+        weight: '2.0',
+      }
+    }
+    if (feature.properties.NAME == 4){
+      return {
+        color: '#A1CAF1',
+        weight: '2.0',
+      }
+    }
+    if (feature.properties.NAME == 5){
+      return {
+        color: '#F2F3F4',
+        weight: '2.0',
+      }
+    }
+    if (feature.properties.NAME == 6){
+      return {
+        color: '#BE0032',
+        weight: '2.0',
       }
     }
   }
