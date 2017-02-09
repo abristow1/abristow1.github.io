@@ -90,8 +90,11 @@
     var trailsLayer = L.geoJson(null);
     var trails = L.geoJson(null, {
       style: function (feature){
-        color: "#848482"
-        weight:"4.5"
+        return {
+          color: "#222222",
+          weight:"4.5",
+          fillColor: "#848482"
+        }
       }
     });
     $.getJSON("mills_trails.geojson", function (data){
