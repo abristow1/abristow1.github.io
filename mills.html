@@ -121,7 +121,7 @@ var segments = L.geoJson(null, {
 $.getJSON("segs.geojson", function (data){
   segments.addData(data);
 });
-
+segments.addTo(mymap);
     /*Elevation overlay*/   
     var imageUrl = "saline2.png",
         imageBounds = [[34.618709020731, -92.50478665723], [34.592881718430, -92.46680533031]];
