@@ -44,6 +44,10 @@
       maxZoom: 20,
       ext: 'png'
     });
+
+    var Gray = L.esri.basemapLayer('Gray');
+    var DarkGray = L.esri.basemapLayer('DarkGray');
+    var ShadedRelief = L.esri.basemapLayer('ShadedRelief');
          
      /*Building Footprints*/
      var building_footprints = L.esri.featureLayer({
@@ -64,14 +68,14 @@
       style: function (feature){
         if (feature.properties.LAYER == "INT"){
           return {
-            color: '#C28280',
-            weight: '2.0',
+            color: '#8DB600',
+            weight: '1.0',
           }
         }
         if (feature.properties.LAYER == "MJR"){
           return {
             color: '#008856',
-            weight: '2.5',
+            weight: '1.5',
           }
         }
       }
@@ -82,33 +86,29 @@
 
 
     /*Existing Trails*/
-    var trails = L.esri.featureLayer({
-      onEachFeature: function (feature, layer)
-      {
-        layer.bindPopup("")
-      },
-      url: 'https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer/44',
-      style: {
-        color: '#E25822',
-        weight: '3.0',
+    var trailsLayer = L.geoJson(null);
+    var trails = L.geoJson(null, {
+      style: function (feature){
+        color: "#848482"
+        weight:"4.5"
       }
     });
-
+    $.getJSON("mills_trails.geojson", function (data){
+      trails.addData(data);
+    });
     /* Parcels */
     var parcelsLayer = L.geoJson(null);
     var parcels = L.geoJson(null, {
       
-    style: function (feature) {
-      return {
-        weight: 1,
-        opacity: 1,
-        color: '#F3C300',
-        fillColor: 'black',
-        fillOpacity: 0.2
-      };
-    },
-      
-      
+      style: function (feature) {
+        return {
+          weight: 1,
+          opacity: 1,
+          color: '#F3C300',
+          fillColor: 'black',
+          fillOpacity: 0.2
+        };
+      },
       onEachFeature: function (feature, layer) {
         if (feature.properties) {
           var parcelsContent = "<table class='table table-striped table-bordered table-condensed'>" + 
@@ -127,7 +127,7 @@
             var layer = e.target;
             layer.setStyle({
               weight: 2,
-              fillOpacity: 0.8,
+              fillOpacity: 0.5,
               dashArray: '10, 5'
             });
           },
@@ -202,7 +202,10 @@
     var baseMaps = {
       "Imagery": imagery,
       "Black & White": Stamen_Toner,
-      "Saline County Lidar": dem
+      "Saline County Lidar": dem,
+      "Gray": Gray,
+      "DarkGray": DarkGray,
+      "ShadedRelief": ShadedRelief
     };
     var overlayMaps = {
       "Buildings": building_footprints,
