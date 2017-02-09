@@ -47,15 +47,28 @@
         weight: 2
       }
     });
-
+     /* Contours */
      var contours = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
         layer.bindPopup("Elevation: " + feature.properties.ELEVATION)
       },
-      url: 'https://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/48'
+      url: 'http://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer/88'
     });
 
+     /*Existing Trails*/
+     
+    var trails = L.esri.featureLayer({
+      onEachFeature: function (feature, layer)
+      {
+        layer.bindPopup("Parcel ID: " + feature.properties.parcel_id)
+      },
+      url: 'http://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer/44',
+      style: {
+        color: '#848482',
+        weight: '3.0',
+      }
+    });
 
     /* Parcels */
     var parcelsLayer = L.geoJson(null);
@@ -118,7 +131,7 @@ var segments = L.geoJson(null, {
     }
     if (feature.properties.NAME == 2){
       return {
-        color: '#E68FAC',
+        color: '#875692',
         weight: '3.0',
       }
     }
@@ -169,7 +182,8 @@ segments.addTo(mymap);
       "Buildings": building_footprints,
       "Contours": contours,
       "Parcels": parcels,
-      "Elevation": elevation
+      "Elevation": elevation,
+      "Existing Trails": trails
     };
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
