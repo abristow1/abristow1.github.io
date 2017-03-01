@@ -5,17 +5,17 @@
 		"name": "Marine (M)",
 		"children": [
 			{
-			"name": "Subtidal"
+			"name": "Subtidal",
 			"children": [
 				{
-				"name": "Rock Bottom"
+				"name": "Rock Bottom",
 				"children": [
 					{"name": "Bedrock"},
 					{"name": "Rubble"}
 				]
 			},
 				{
-				"name": "Unconsolidated Bottom"
+				"name": "Unconsolidated Bottom",
 				"children": [
 					{"name": "Cobble-Gravel"},
 					{"name": "Sand"},
@@ -23,7 +23,7 @@
 				]
 			},
 				{
-				"name": "Aquatic Bed"
+				"name": "Aquatic Bed",
 				"children": [
 					{"name": "Algal"},
 					{"name": "Rooted Vascular"}
