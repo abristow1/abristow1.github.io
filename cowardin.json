@@ -4,41 +4,13 @@
 		{
 		"name": "Marine (M)",
 		"children": [
-			{
-			"name": "Subtidal",
-			"children": [
-				{
-				"name": "Rock Bottom",
-				"children": [
-					{
-					"name": "Bedrock"
-				},
-					{
-					"name": "Rubble"
-				}
-				]
-				{"name": "Unconsolidated Bottom"},
-				{"name": "Aquatic Bed"},
-				{"name": "Reef"}
-			},
-			]
-		},
-			{
-			"name": "Intertidal"
-		}
+			{"name": "Subtidal"},
+			{"name": "Intertidal"}
 		]
 	},
-		{
-		"name": "Estuarine (E)"
-	},
-		{
-		"name": "Riverine (R)"
-	},
-		{
-		"name": "Lacustrine (L)"
-	},
-		{
-		"name": "Palustrine (P)"
-	}
+		{"name": "Estuarine (E)"},
+		{"name": "Riverine (R)"},
+		{"name": "Lacustrine (L)"},
+		{"name": "Palustrine (P)"}
 	]
 }
