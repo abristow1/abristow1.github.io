@@ -29,13 +29,79 @@
 					{"name": "Rooted Vascular"}
 				]
 			},
+				{
+				"name": "Reef",
+				"children": [
+					{"name": "Coral"},
+					{"name": "Worm"}
+				]
+			}
+			]
+		},
+			{
+			"name": "Intertidal",
+			"children": [
+				{
+				"name": "Aquatic Bed",
+				"children": [
+					{"name": "Algal"},
+					{"name": "Rooted Vascular"}
+				]
+			},
+				{
+				"name": "Reef",
+				"children": [
+					{"name": "Coral"},
+					{"name": "Worm"}
+				]
+			},
+				{
+				"name": "Rocky Shore",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"}
+				]
+			},
+				{
+				"name": "Unconsolidated Shore",
+				"children": [
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"}
+				]
+			}
+			]
+		}
+		]
+	},
+		{
+		"name": "Estuarine (E)",
+		"children": [
+			{
+			"name": "Subtidal",
+			"children": [
+				{"name": "Rock Bottom"},
+				{"name": "Unconsolidated Bottom"},
+				{"name": "Aquatic Bed"},
 				{"name": "Reef"}
 			]
 		},
-			{"name": "Intertidal"}
+			{
+			"name": "Intertidal",
+			"children": [
+				{"name": "Aquatic Bed"},
+				{"name": "Reef"},
+				{"name": "Streambed"},
+				{"name": "Rocky Shore"},
+				{"name": "Unconsolidated Shore"},
+				{"name": "Emergent"},
+				{"name": "Scrub-Shrub"},
+				{"name": "Forested"}
+			]
+		}
 		]
 	},
-		{"name": "Estuarine (E)"},
 		{"name": "Riverine (R)"},
 		{"name": "Lacustrine (L)"},
 		{"name": "Palustrine (P)"}
