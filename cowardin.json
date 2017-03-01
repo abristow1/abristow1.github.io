@@ -195,7 +195,192 @@
 		}
 		]
 	},
-		{"name": "Riverine (R)"},
+		{
+		"name": "Riverine (R)",
+		"children": [
+			{
+			"name": "Tidal",
+			"children": [
+				{
+				"name": "Rock Bottom",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"}
+				]
+			},
+				{
+				"name": "Unconsolidated Bottom",
+				"children": [
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"}
+				]
+			},
+				{
+				"name": "Aquatic Bed",
+				"children": [
+					{"name": "Algal"},
+					{"name": "Aquatic Moss"},
+					{"name": "Rooted Vascular"},
+					{"name": "Floating Vascular"}
+				]
+			},
+				{
+				"name": "Streambed",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"},
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"},
+					{"name": "Vegetated"}
+				]
+			},
+				{
+				"name": "Rocky Shore",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"}
+				]
+			},
+				{
+				"name": "Unconsolidated Shore",
+				"children": [
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"},
+					{"name": "Vegetated"}
+				]
+			},
+				{
+				"name": "Emergent",
+				"children": [
+					{"name": "Nonpersistent"}
+				]
+			}		
+			]
+		},
+			{
+			"name": "Lower Perennial",
+			"children": [
+				{
+				"name": "Unconsolidated Bottom",
+				"children": [
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"}
+				]
+			},
+				{
+				"name": "Aquatic Bed",
+				"children": [
+					{"name": "Algal"},
+					{"name": "Aquatic Moss"},
+					{"name": "Rooted Vascular"},
+					{"name": "Floating Vascular"}
+				]
+			},
+				{
+				"name": "Rocky Shore",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"}
+				]
+			},
+				{
+				"name": "Unconsolidated Shore",
+				"children": [
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"},
+					{"name": "Vegetated"}
+				]
+			},
+				{
+				"name": "Emergent",
+				"children": [
+					{"name": "Nonpersistent"}
+				]
+			}
+			]
+		},
+			{
+			"name": "Upper Perennial",
+			"children": [
+				{
+				"name": "Rock Bottom",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"}
+				]
+			},
+				{
+				"name": "Unconsolidated Bottom",
+				"children": [
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"}
+				]
+			},
+				{
+				"name": "Aquatic Bed",
+				"children": [
+					{"name": "Algal"},
+					{"name": "Aquatic Moss"},
+					{"name": "Rooted Vascular"},
+					{"name": "Floating Vascular"}
+				]
+			},
+				{
+				"name": "Rocky Shore",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"}
+				]
+			},
+				{
+				"name": "Unconsolidated Shore",
+				"children": [
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"},
+					{"name": "Vegetated"}
+				]
+			},
+				{
+				"name": "Emergent",
+				"children": [
+					{"name": "Nonpersistent"},
+				]
+			}
+			]
+		},
+			{
+			"name": "Intermittent",
+			"children": [
+				{
+				"name": "Streambed",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"},
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"},
+					{"name": "Vegetated"}
+				]
+			}
+			]
+		}
+		]
+	},
 		{"name": "Lacustrine (L)"},
 		{"name": "Palustrine (P)"}
 	]
