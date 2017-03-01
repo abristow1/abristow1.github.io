@@ -81,23 +81,116 @@
 			{
 			"name": "Subtidal",
 			"children": [
-				{"name": "Rock Bottom"},
-				{"name": "Unconsolidated Bottom"},
-				{"name": "Aquatic Bed"},
-				{"name": "Reef"}
+				{
+				"name": "Rock Bottom",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"}
+				]
+			},
+				{
+				"name": "Unconsolidated Bottom",
+				"children": [
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"}
+				]
+			},
+				{
+				"name": "Aquatic Bed",
+				"children": [
+					{"name": "Algal"},
+					{"name": "Rooted Vascular"},
+					{"name": "Floating Vascular"}
+				]
+			},
+				{
+				"name": "Reef",
+				"children": [
+					{"name": "Mollusk"},
+					{"name": "Worm"}
+				]
+			}
 			]
 		},
 			{
 			"name": "Intertidal",
 			"children": [
-				{"name": "Aquatic Bed"},
-				{"name": "Reef"},
-				{"name": "Streambed"},
-				{"name": "Rocky Shore"},
-				{"name": "Unconsolidated Shore"},
-				{"name": "Emergent"},
-				{"name": "Scrub-Shrub"},
-				{"name": "Forested"}
+				{
+				"name": "Aquatic Bed",
+				"children": [
+					{"name": "Algal"},
+					{"name": "Rooted Vascular"},
+					{"name": "Floating Vascular"}
+				]
+			},
+				{
+				"name": "Reef",
+				"children": [
+					{"name": "Mollusk"},
+					{"name": "Worm"}
+				]
+			},
+				{
+				"name": "Streambed",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"},
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"}
+				]
+			},
+				{
+				"name": "Rocky Shore",
+				"children": [
+					{"name": "Bedrock"},
+					{"name": "Rubble"}
+				]
+			},
+				{
+				"name": "Unconsolidated Shore",
+				"children": [
+					{"name": "Cobble-Gravel"},
+					{"name": "Sand"},
+					{"name": "Mud"},
+					{"name": "Organic"}
+				]
+			},
+				{
+				"name": "Emergent",
+				"children": [
+					{"name": "Persistent"},
+					{"name": "Non-persistent"},
+					{"name": "Phragmites australis"}
+				]
+			},
+				{
+				"name": "Scrub-Shrub",
+				"children": [
+					{"name": "Broad-Leaved Deciduous"},
+					{"name": "Needle-Leaved Deciduous"},
+					{"name": "Broad-Leaved Evergreen"},
+					{"name": "Needle-Leaved Evergreen"},
+					{"name": "Dead"},
+					{"name": "Deciduous"},
+					{"name": "Evergreen"}
+				]
+			},
+				{
+				"name": "Forested",
+				"children": [
+					{"name": "Broad-Leaved Deciduous"},
+					{"name": "Needle-Leaved Deciduous"},
+					{"name": "Broad-Leaved Evergreen"},
+					{"name": "Needle-Leaved Evergreen"},
+					{"name": "Dead"},
+					{"name": "Deciduous"},
+					{"name": "Evergreen"}
+				]
+			}
 			]
 		}
 		]
