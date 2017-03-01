@@ -357,7 +357,7 @@
 				{
 				"name": "Emergent",
 				"children": [
-					{"name": "Nonpersistent"},
+					{"name": "Nonpersistent"}
 				]
 			}
 			]
