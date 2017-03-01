@@ -1,0 +1,10 @@
+{
+	"name": "Cowardin Classification",
+	"children": [
+		{"name": "Marine"},
+		{"name": "Estuarine"},
+		{"name": "Riverine"},
+		{"name": "Lacustrine"},
+		{"name": "Palustrine"}
+	]
+}
