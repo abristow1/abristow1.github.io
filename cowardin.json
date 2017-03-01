@@ -5,10 +5,10 @@
 		"name": "Marine (M)",
 		"children": [
 			{
-			"name": "Subtidal"
+			"name": "Subtidal",
 			"children": [
 				{
-				"name": "Rock Bottom"
+				"name": "Rock Bottom",
 				"children": [
 					{
 					"name": "Bedrock"
