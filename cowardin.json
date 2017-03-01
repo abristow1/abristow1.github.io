@@ -1,10 +1,44 @@
 {
 	"name": "Cowardin Classification",
 	"children": [
-		{"name": "Marine"},
-		{"name": "Estuarine"},
-		{"name": "Riverine"},
-		{"name": "Lacustrine"},
-		{"name": "Palustrine"}
+		{
+		"name": "Marine (M)",
+		"children": [
+			{
+			"name": "Subtidal"
+			"children": [
+				{
+				"name": "Rock Bottom"
+				"children": [
+					{
+					"name": "Bedrock"
+				},
+					{
+					"name": "Rubble"
+				}
+				]
+				{"name": "Unconsolidated Bottom"},
+				{"name": "Aquatic Bed"},
+				{"name": "Reef"}
+			},
+			]
+		},
+			{
+			"name": "Intertidal"
+		}
+		]
+	},
+		{
+		"name": "Estuarine (E)"
+	},
+		{
+		"name": "Riverine (R)"
+	},
+		{
+		"name": "Lacustrine (L)"
+	},
+		{
+		"name": "Palustrine (P)"
+	}
 	]
 }
