@@ -552,6 +552,95 @@
 					]
 				}
 			]
+		},
+		{
+			"name": "Modifiers",
+			"children": [
+				{
+					"name": "Water Regime",
+					"children": [
+						{
+							"name": "Nontidal",
+							"children": [
+								{"name": "(A) Temporarily Flooded"},
+								{"name": "(B) Seasonally Saturated"},
+								{"name": "(C) Seasonally Flooded"},
+								{"name": "(D) Continuously Saturated"},
+								{"name": "(E) Seasonally Flooded / Saturated"},
+								{"name": "(F) Semipermanently Flooded"},
+								{"name": "(G) Intermittently Exposed"},
+								{"name": "(H) Permanently Flooded"},
+								{"name": "(J) Intermittently Flooded"},
+								{"name": "(K) Artificially Flooded"}
+							]
+							},
+						{
+							"name": "Saltwater Tidal",
+							"children": [
+								{"name": "(L) Subtidal"},
+								{"name": "(M) Irregularly Exposed"},
+								{"name": "(N) Regularly Flooded"},
+								{"name": "(P) Irregularly Flooded"}
+							]
+							},
+						{
+							"name": "Freshwater Tidal",
+							"children": [
+								{"name": "(S) Temporarily Flooded-Fresh Tidal"},
+								{"name": "(Q) Regularly Flooded-Fresh Tidal"},
+								{"name": "(R) Seasonally Flooded-Fresh Tidal"},
+								{"name": "(T) Semipermanently Flooded-Fresh Tidal"},
+								{"name": "(V) Permanently Flooded-Fresh Tidal"}
+							]
+						}
+					]
+					},
+				{
+					"name": "Special Modifiers",
+					"children": [
+						{"name": "(b) Beaver"},
+						{"name": "(d) Partly Drained/Ditched"},
+						{"name": "(f) Farmed"},
+						{"name": "(m) Managed"},
+						{"name": "(h) Diked/Impounded"},
+						{"name": "(r) Artificial Substrate"},
+						{"name": "(s) Spoil"},
+						{"name": "(x) Excavated"}
+					]
+					},
+				{
+					"name": "Water Chemistry",
+					"children": [
+						{
+							"name": "Halinity/Salinity",
+							"children": [
+								{"name": "(1) Hyperhaline/Hypersaline"},
+								{"name": "(2) Euhaline/Eusaline"},
+								{"name": "(3) Mixohaline/Mixosaline (Brackish)"},
+								{"name": "(4) Polyhaline"},
+								{"name": "(5) Mesohaline"},
+								{"name": "(6) Oligohaline"},
+								{"name": "(0) Fresh"}
+							]
+						}
+						{
+							"name": "pH Modifiers for Fresh Water",
+							"children": [
+								{"name": "(a) Acid"},
+								{"name": "(t) Circumneutral"},
+								{"name": "(i) Alkaline"}
+							]
+						}
+					]
+					},
+				{
+					"name": "Soil",
+					"children": [
+						{"name": "(g) Organic"},
+						{"name": "(n) Mineral"}
+					]
+				}
+			]
 		}
 	]
 }
