@@ -476,77 +476,77 @@
 					"name": "",
 					"children": [
 						{
-							"name": "Rock Bottom",
+							"name": "Rock Bottom (RB)",
 							"children": [
-								{"name": "Bedrock"},
-								{"name": "Rubble"}
+								{"name": "Bedrock (RB1)"},
+								{"name": "Rubble (RB2)"}
 							]
 							},
 						{
-							"name": "Unconsolidated Bottom",
+							"name": "Unconsolidated Bottom (UB)",
 							"children": [
-								{"name": "Cobble-Gravel"},
-								{"name": "Sand"},
-								{"name": "Mud"},
-								{"name": "Organic"}
+								{"name": "Cobble-Gravel (UB1)"},
+								{"name": "Sand (UB2)"},
+								{"name": "Mud (UB3)"},
+								{"name": "Organic (UB4)"}
 							]
 							},
 						{
-							"name": "Aquatic Bed",
+							"name": "Aquatic Bed (AB)",
 							"children": [
-								{"name": "Algal"},
-								{"name": "Aquatic Moss"},
-								{"name": "Rooted Vascular"},
-								{"name": "Floating Vascular"}
+								{"name": "Algal (AB1)"},
+								{"name": "Aquatic Moss (AB2)"},
+								{"name": "Rooted Vascular (AB3)"},
+								{"name": "Floating Vascular (AB4)"}
 							]
 							},
 						{
-							"name": "Unconsolidated Shore",
+							"name": "Unconsolidated Shore (US)",
 							"children": [
-								{"name": "Cobble-Gravel"},
-								{"name": "Sand"},
-								{"name": "Mud"},
-								{"name": "Organic"},
-								{"name": "Vegetated"}
+								{"name": "Cobble-Gravel (US1)"},
+								{"name": "Sand (US2)"},
+								{"name": "Mud (US3)"},
+								{"name": "Organic (US4)"},
+								{"name": "Vegetated (US5)"}
 							]
 							},
 						{
-							"name": "Moss-Lichen",
+							"name": "Moss-Lichen (ML)",
 							"children": [
-								{"name": "Moss"},
-								{"name": "Lichen"}
+								{"name": "Moss (ML1)"},
+								{"name": "Lichen (ML2)"}
 							]
 							},
 						{
-							"name": "Emergent",
+							"name": "Emergent Wetland (EM)",
 							"children": [
-								{"name": "Persistent"},
-								{"name": "Nonpersistent"},
-								{"name": "Phragmites australis"}
+								{"name": "Persistent (EM1)"},
+								{"name": "Nonpersistent (EM2)"},
+								{"name": "Phragmites australis (EM3)"}
 							]
 							},
 						{
-							"name": "Scrub-Shrub",
+							"name": "Scrub-Shrub (SS)",
 							"children": [
-								{"name": "Broad-Leaved Deciduous"},
-								{"name": "Needle-Leaved Deciduous"},
-								{"name": "Broad-Leaved Evergreen"},
-								{"name": "Needle-Leaved Evergreen"},
-								{"name": "Dead"},
-								{"name": "Deciduous"},
-								{"name": "Evergreen"}
+								{"name": "Broad-Leaved Deciduous (SS1)"},
+								{"name": "Needle-Leaved Deciduous (SS2)"},
+								{"name": "Broad-Leaved Evergreen (SS3)"},
+								{"name": "Needle-Leaved Evergreen (SS4)"},
+								{"name": "Dead (SS5)"},
+								{"name": "Deciduous (SS6)"},
+								{"name": "Evergreen (SS7)"}
 							]
 							},
 						{
-							"name": "Forested",
+							"name": "Forested Wetland (FO)",
 							"children": [
-								{"name": "Broad-Leaved Deciduous"},
-								{"name": "Needle-Leaved Deciduous"},
-								{"name": "Broad-Leaved Evergreen"},
-								{"name": "Needle-Leaved Evergreen"},
-								{"name": "Dead"},
-								{"name": "Deciduous"},
-								{"name": "Evergreen"}
+								{"name": "Broad-Leaved Deciduous (FO1)"},
+								{"name": "Needle-Leaved Deciduous (FO2)"},
+								{"name": "Broad-Leaved Evergreen (FO3)"},
+								{"name": "Needle-Leaved Evergreen (FO4)"},
+								{"name": "Dead (FO5)"},
+								{"name": "Deciduous (FO6)"},
+								{"name": "Evergreen (FO7)"}
 							]
 						}
 					]
