@@ -1,77 +1,62 @@
-<!DOCTYPE html>
-
-<html>
-
+<!DOCTYPE HTML>
+<html lang="en">
 <head>
-   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
-   <style>
-     #mapid {
-       height: 500px;
-     }
-   </style>
-</head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Index</title>
+
+<!-- JS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+<script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
+<script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
+<script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+    
+
 
 <body>
    
-     <!-- JS -->
-     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-     <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
-     <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
-     <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/index/">Home</a>           
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li><a href="projects.html">Projects</a></li>
+            </ul> 
+        </div>
+    </div>
+</div>
 
-  <div id="mapid"></div>
+<div class="container theme-showcase" role="main">   
+    <div class="jumbotron">
+        <h1 align='center'><img src="dem.bmp"></h1>
+        <h2 align='center'>
+            <a href="nwi.html">NWI</a>
+        </h2>
+        <h2 align='center'>
+            <a href="various.html">Various</a>
+        </h2>  
+    </div>
+</div>
 
-  <script>
-    var mymap = L.map('mapid').setView([34.747, -92.312], 14);
+<hr>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+
      
-
-    var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
-    var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
-
-    var pgis = L.esri.tiledMapLayer({url:"http://www.pagis.org/arcgis/rest/services/MAPS/Terrain_BareEarth/MapServer", useCors: true});
-    var nhd_medium_res_flowline_usgs = L.esri.featureLayer({
-      onEachFeature: function (feature, layer)
-      {
-        layer.bindPopup(feature.properties.gnis_name)
-      },
-      url: 'https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Water/FeatureServer/12',
-      style: {
-        color: '#A1CAF1',
-        weight: 2
-      },
-      simplifyFactor: 0
-    });
-     
-    var runLayer = omnivore.kml('bare_earth.kml');
-
-    var baseMaps = {
-      "Aerial": imagery,
-      "BareEarth": pgis
-    };
-
-    var overlayMaps = {
-      "Streams": nhd_medium_res_flowline_usgs
-    };
-
-    L.control.layers(baseMaps, overlayMaps, {
-      collapsed: true
-    }).addTo(mymap);
-     
-    
-  </script>
-  <br>
-  <div id='main'>
-     <a href="test.html"><h2>test</h2></a>
-     <a href="d3_transform.html"><h2>D3 Transform Example</h2></a>
-     <a href="d3_dendrogram.html"><h2>D3 Dendrogram Example</h2></a>
-     <a href="d3_colorbrewer.html"><h2>D3 Every Colorbrewer Scale Example</h2></a>
-     <br>
-     <h>Cowardin Classification - Visualization Examples </h>
-     <a href="indented_tree.html"><h2>Indented Tree</h2></a>
-     <a href="cowardin_dendrogram.html"><h2>Dendrogram</h2></a>
-     <a href="cowardin_circle_packing.html"><h2>Zoomable Circle Packing</h2></a>
-     <a href="mills.html"><h2>Mills</h2></a>
-  </div>
-   
 </body>
 </html>
