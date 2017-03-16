@@ -17,6 +17,19 @@
 <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
 <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
 <script src='//api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+   <style>
+     body {
+      padding: 0;
+      margin: 0;
+      }
+     html, body, #mapid {
+       height: 100%;
+       width: 100%;
+     }
+   </style>
+
+</head>
     
 
 
@@ -40,6 +53,7 @@
         </div>
     </div>
 </div>
+<div id="mapid"></div>
 
   <script>
     var mymap = L.map('mapid').setView([34.747, -92.312], 14);
