@@ -70,7 +70,7 @@
         layer.bindPopup(feature.properties.PmtAFIN + " ft")
       }
     });
-    $.getJSON("permits.geojson", function (data){
+    $.getJSON("permits_wgs.geojson", function (data){
       contours.addData(data);
     });
 
