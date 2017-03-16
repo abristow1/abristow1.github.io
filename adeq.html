@@ -41,12 +41,39 @@
     </div>
 </div>
 
-<div class="container theme-showcase" role="main">   
+  <script>
+    var mymap = L.map('mapid').setView([34.747, -92.312], 14);
+     
 
-    <div class="jumbotron">
-     <iframe src="https://www.adeq.state.ar.us/home/pdssql/p_facil_info.aspx?AFINDash=75-00037&AFIN=7500037">deq</iframe>   
-    </div>
-</div>
+    var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
+    var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
+
+    /* Contours */
+    var sitesLayer = L.geoJson(null);
+    var sites = L.geoJson(null, {
+        onEachFeature: function (feature, layer)
+      {
+        layer.bindPopup(feature.properties.PmtAFIN + " ft")
+      }
+    });
+    $.getJSON("permits.geojson", function (data){
+      contours.addData(data);
+    });
+
+    var baseMaps = {
+      "Aerial": imagery
+    };
+
+    var overlayMaps = {
+      "Permit Sites": sites
+    };
+
+    L.control.layers(baseMaps, overlayMaps, {
+      collapsed: true
+    }).addTo(mymap);
+     
+    
+  </script>
 
 
 
