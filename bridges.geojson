@@ -1,0 +1,9 @@
+{
+"type": "FeatureCollection",
+"features": [
+{ "type": "Feature", "properties": { "label": "Bridge 1", "image": "Bridge1.jpg" }, "geometry": { "type": "Point", "coordinates": [ -92.48202537967218, 34.607152800906903, 0.0 ] } },
+{ "type": "Feature", "properties": { "label": "Bridge 2", "image": "Bridge2.jpg" }, "geometry": { "type": "Point", "coordinates": [ -92.481681, 34.606787, 0.0 ] } },
+{ "type": "Feature", "properties": { "label": "Bridge 3", "image": "Bridge3.jpg" }, "geometry": { "type": "Point", "coordinates": [ -92.481706684542914, 34.606338572119213, 0.0 ] } },
+{ "type": "Feature", "properties": { "label": "Bridge 4", "image": "Bridge4.jpg" }, "geometry": { "type": "Point", "coordinates": [ -92.482629, 34.606843, 0.0 ] } }
+]
+}
