@@ -34,6 +34,7 @@
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
     var dem = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});
+    var saline2016 = L.esri.dynamicMapLayer({url: "http://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer"});
 
     var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
       attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -236,6 +237,7 @@
     /*Layer Control*/ 
     var baseMaps = {
       "Imagery": imagery,
+      "Saline County - 2016 Imagery": saline2016,
       "Saline County Lidar": dem,
       "Toner": Stamen_TonerLite
     };
