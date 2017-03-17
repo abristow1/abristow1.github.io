@@ -21,10 +21,10 @@
      <!-- JS -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
      <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-     <script src="leaflet_polygon_fill.js"></script>
      <script src="segs.geojson"></script>
      <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
+     <script src="leaflet_polygon_fill.js"></script>
   <div id="mapid"></div>
 
   <script>
@@ -106,13 +106,13 @@
     var anhc = L.geoJson(null, {
         onEachFeature: function (feature, layer)
       {
-        layer.bindPopup(" ")
+        layer.bindPopup(" "),
+        fill:'url(hatch.gif)'
       },
       style: function (feature){
           return {
             color: '#8db600',
             weight: '1.5',
-            fill:'url(hatch.gif)',
           }
         }
     });
