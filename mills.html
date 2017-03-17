@@ -269,7 +269,7 @@
     var segmentsLayer = L.geoJson(null);
     var segments = L.geoJson(null, {
       style: function (feature){
-        if (feature.properties.TYPE == "Existing Paved"){
+        if (feature.properties.TYPE == "nothing"){
           return {
             color: '#848482',
             weight: '4.0',
@@ -293,9 +293,9 @@
             weight: '4.0',
           }
         }
-        if (feature.properties.NAME == "IT WONT"){
+        if (feature.properties.TYPE == "Existing Paved"){
           return {
-            color: '#0067A5',
+            color: '#848482',
             weight: '4.0',
           }
         }
