@@ -78,14 +78,18 @@
     
     /* ESRI Imagery*/ 
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
+    
     /* ESRI Labels*/
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
+    
     /* DEM */
-    var dem = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});
+    /*var dem = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});*/
+
     /* EFS Saline 2016 Imagery*/
-    var saline2016 = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer"});
+    /*var saline2016 = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer"});*/
+    
     /*EFS Bryant Master Map*/
-    var bryantmaster = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer"});
+    var bryantmaster = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer"}).addTo(mymap);
 
     /* Stamen Toner Basemap */
     var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
@@ -289,16 +293,16 @@
     /*Layer Control*/ 
     var baseMaps = {
       "Imagery": imagery,
-      "Saline County - 2016 Imagery": saline2016,
-      "Saline County Lidar": dem,
-      "City of Bryant Master Map": bryantmaster,
+      /*"Saline County - 2016 Imagery": saline2016,*/
+      /*"Saline County Lidar": dem,*/
+      /*"City of Bryant Master Map": bryantmaster,*/
       "Toner": Stamen_TonerLite
     };
     var overlayMaps = {
-      "Buildings": building_footprints,
+      "Building Footprints": building_footprints,
       "Contours": contours,
-      "Parcels": parcels,
-      "Elevation": elevation
+      "Parcels": parcels
+      /*"Elevation": elevation*/
     };
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
