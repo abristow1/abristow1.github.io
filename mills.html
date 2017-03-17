@@ -100,6 +100,24 @@
       ext: 'png'
     });
 
+    /* ANHC Area */
+    var anhcLayer = L.geoJson(null);
+    var anhc = L.geoJson(null, {
+        onEachFeature: function (feature, layer)
+      {
+        layer.bindPopup(" ")
+      },
+      style: function (feature){
+          return {
+            color: '#8db600',
+            weight: '1.5',
+          }
+        }
+    });
+    $.getJSON("anhc.geojson", function (data){
+      anhc.addData(data);
+    });
+
          
     /* Building Footprints */
     var footprintsLayer = L.geoJson(null);
@@ -110,7 +128,7 @@
       },
       style: function (feature){
           return {
-            color: '#2EFE2E',
+            color: '#875692',
             weight: '1.5',
           }
         }
