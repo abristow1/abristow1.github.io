@@ -21,7 +21,6 @@
      <!-- JS -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
      <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
-     <script src="segs.geojson"></script>
      <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
      <script src="leaflet_polygon_fill.js"></script>
@@ -166,7 +165,9 @@
       contours.addData(data);
     });
 
+
     /*Existing Trails Outline*/
+    /*
     var trails_outlineLayer = L.geoJson(null);
     var trails_outline = L.geoJson(null, {
       style: function (feature){
@@ -181,8 +182,10 @@
     });
     trails_outline.addTo(mymap);
     trails_outline.bringToFront();
+    */
 
     /*Existing Trails*/
+    /*
     var trailsLayer = L.geoJson(null);
     var trails = L.geoJson(null, {
       style: function (feature){
@@ -197,6 +200,7 @@
     });
     trails.addTo(mymap);
     trails.bringToFront();
+    */
 
     /* Parcels */
     var parcelsLayer = L.geoJson(null);
@@ -255,7 +259,7 @@
         }
       }
     });
-    $.getJSON("segs.geojson", function (data){
+    $.getJSON("all_trails.geojson", function (data){
       segments_outline.addData(data);
     });
     segments_outline.addTo(mymap);
@@ -265,27 +269,27 @@
     var segmentsLayer = L.geoJson(null);
     var segments = L.geoJson(null, {
       style: function (feature){
-        if (feature.properties.NAME == 1){
+        if (feature.properties.TYPE == "Existing Paved"){
           return {
-            color: '#DCD300',
+            color: '#848482',
             weight: '4.0',
           }
         }
-        if (feature.properties.NAME == 2){
+        if (feature.properties.TYPE == "Official Existing"){
           return {
-            color: '#E68FAC',
+            color: '#00FF7F',
             weight: '4.0',
           }
         }
-        if (feature.properties.NAME == 3){
+        if (feature.properties.TYPE == "Trail Expansion"){
           return {
             color: '#F38400',
             weight: '4.0',
           }
         }
-        if (feature.properties.NAME == 4){
+        if (feature.properties.TYPE == "Unofficial Existing"){
           return {
-            color: '#A1CAF1',
+            color: '#DCD300',
             weight: '4.0',
           }
         }
