@@ -103,7 +103,7 @@
     });
 
     /* Bridges */
-    var buildingMarker = L.icon({
+    var bridgeMarker = L.icon({
         iconUrl: 'marker-red.png',
         //shadowUrl: 'leaf-shadow.png',
         iconSize:     [32, 32] // size of the icon
@@ -111,7 +111,7 @@
 
     var bridges = L.geoJson(null, {
       pointToLayer: function(feature, latlng) {
-        var marker = L.marker(latlng, {icon: wellMarker});
+        var marker = L.marker(latlng, {icon: bridgeMarker});
         marker.bindPopup('<b>' + feature.properties.label + '</b><hr><centering><a href="#" data-toggle="modal" data-target="#featureModal">View Image</a></centering>');
         return marker;
       },
