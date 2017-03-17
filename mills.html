@@ -116,7 +116,6 @@
         return marker;
       },
       onEachFeature: function (feature, layer) {
-        layer.addTo(wellcluster);
         if (feature.properties) {
           layer.on({
             click: function (e) {
