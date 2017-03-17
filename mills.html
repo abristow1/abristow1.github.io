@@ -21,6 +21,7 @@
      <!-- JS -->
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
      <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+     <script src="leaflet_polygon_fill.js"></script>
      <script src="segs.geojson"></script>
      <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
@@ -111,6 +112,7 @@
           return {
             color: '#8db600',
             weight: '1.5',
+            fill:'url(hatch.gif)',
           }
         }
     });
@@ -322,7 +324,7 @@
       /*"Toner": Stamen_TonerLite*/
     };
     var overlayMaps = {
-      "ANHC Natural Area <br>&nbsp;&nbsp;&nbsp;(<i>Pending Authorization</i>)": anhc,
+      "ANHC Natural Area <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<i>Pending Authorization</i>)": anhc,
       "Building Footprints": footprints,
       "Contours": contours,
       "Parcel Information": parcels
