@@ -19,7 +19,9 @@
 <body>
    
      <!-- JS -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
      <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
      <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
@@ -99,6 +101,36 @@
       maxZoom: 20,
       ext: 'png'
     });
+
+    /* Bridges */
+    var buildingMarker = L.icon({
+        iconUrl: 'marker-red.png',
+        //shadowUrl: 'leaf-shadow.png',
+        iconSize:     [32, 32] // size of the icon
+    });
+
+    var bridges = L.geoJson(null, {
+      pointToLayer: function(feature, latlng) {
+        var marker = L.marker(latlng, {icon: wellMarker});
+        marker.bindPopup('<b>' + feature.properties.label + '</b><hr><centering><a href="#" data-toggle="modal" data-target="#featureModal">View Image</a></centering>');
+        return marker;
+      },
+      onEachFeature: function (feature, layer) {
+        layer.addTo(wellcluster);
+        if (feature.properties) {
+          layer.on({
+            click: function (e) {
+              $("#feature-title").html(feature.properties.label);
+              $("#feature-info").html("<img src=" + feature.properties.image + " class='img-responsive'>");
+          //    $("#featureModal").modal("show");
+            }
+          });
+        };
+      }
+    });
+    $.getJSON("bridges.data", function (data) {
+      bridges.addData(data);
+     });
 
     /* ANHC Area */
     var anhcLayer = L.geoJson(null);
@@ -330,6 +362,7 @@
     };
     var overlayMaps = {
       "ANHC Natural Area <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<i>Pending Authorization</i>)": anhc,
+      "Bridges": bridges,
       "Building Footprints": footprints,
       "Contours": contours,
       "Parcel Information": parcels
@@ -353,6 +386,21 @@
     });
       
   </script>
+
+  <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="modalContent">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-primary" id="feature-title"></h4>
+      </div>
+      <div class="modal-body" id="feature-info"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
    
 </body>
 </html>
