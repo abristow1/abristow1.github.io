@@ -128,7 +128,7 @@
         };
       }
     });
-    $.getJSON("bridges.data", function (data) {
+    $.getJSON("bridges.geojson", function (data) {
       bridges.addData(data);
      });
 
@@ -372,12 +372,12 @@
       collapsed: false
     }).addTo(mymap);
 
-    mymap.on("overlayadd", function (event) {
+   /* mymap.on("overlayadd", function (event) {
       trails_outline.bringToFront();
     });
     mymap.on("overlayadd", function (event) {
       trails.bringToFront();
-    });
+    }); */
     mymap.on("overlayadd", function (event) {
       segments_outline.bringToFront();
     });
