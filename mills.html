@@ -293,13 +293,13 @@
             weight: '4.0',
           }
         }
-        if (feature.properties.NAME == 5){
+        if (feature.properties.NAME == "IT WONT"){
           return {
             color: '#0067A5',
             weight: '4.0',
           }
         }
-        if (feature.properties.NAME == 6){
+        if (feature.properties.NAME == "SOMETHING ELSE"){
           return {
             color: '#BE0032',
             weight: '4.0',
@@ -307,7 +307,7 @@
         }
       }
     });
-    $.getJSON("segs.geojson", function (data){
+    $.getJSON("all_trails.geojson", function (data){
       segments.addData(data);
     });
     segments.addTo(mymap);
