@@ -89,7 +89,7 @@
     /*var saline2016 = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer"});*/
     
     /*EFS Bryant Master Map*/
-    var bryantmaster = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer"}).addTo(mymap);
+    var bryantmaster = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer"});
 
     /* Stamen Toner Basemap */
     var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
@@ -101,17 +101,22 @@
     });
 
          
-     /*Building Footprints*/
-     var building_footprints = L.esri.featureLayer({
-      onEachFeature: function (feature, layer)
+    /* Building Footprints */
+    var footprintsLayer = L.geoJson(null);
+    var footprints = L.geoJson(null, {
+        onEachFeature: function (feature, layer)
       {
-        layer.bindPopup("Parcel ID: " + feature.properties.parcel_id)
+        layer.bindPopup(" ")
       },
-      url: 'https://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/21',
-      style: {
-        color: '#F2F3F4',
-        weight: 2
-      }
+      style: function (feature){
+          return {
+            color: '#2EFE2E',
+            weight: '1.5',
+          }
+        }
+    });
+    $.getJSON("footprints.geojson", function (data){
+      footprints.addData(data);
     });
 
     /* Contours */
@@ -284,24 +289,24 @@
     segments.bringToFront();
 
     /*Elevation overlay*/   
-    var imageUrl = "saline2.png",
+    /*var imageUrl = "saline2.png",
         imageBounds = [[34.618709020731, -92.50478665723], [34.592881718430, -92.46680533031]];
       
     var elevation = L.imageOverlay(imageUrl, imageBounds);
-     
+    */ 
     
     /*Layer Control*/ 
     var baseMaps = {
       "Imagery": imagery,
       /*"Saline County - 2016 Imagery": saline2016,*/
       /*"Saline County Lidar": dem,*/
-      /*"City of Bryant Master Map": bryantmaster,*/
+      "City of Bryant Master Map": bryantmaster,
       "Toner": Stamen_TonerLite
     };
     var overlayMaps = {
-      "Building Footprints": building_footprints,
+      "Building Footprints": footprints,
       "Contours": contours,
-      "Parcels": parcels
+      "Parcel Information": parcels
       /*"Elevation": elevation*/
     };
     L.control.layers(baseMaps, overlayMaps, {
