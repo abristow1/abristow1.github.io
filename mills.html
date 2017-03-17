@@ -106,13 +106,13 @@
     var anhc = L.geoJson(null, {
         onEachFeature: function (feature, layer)
       {
-        layer.bindPopup(" "),
-        fill:'url(hatch.gif)'
+        layer.bindPopup(" ")
       },
       style: function (feature){
           return {
             color: '#8db600',
-            weight: '1.5',
+            weight: '0',
+            fillOpacity: 0.5
           }
         }
     });
