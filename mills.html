@@ -15,6 +15,12 @@
        height: 100%;
        width: 100%;
      }
+    .modal-body {
+      position: relative;
+      overflow-y: auto;
+      max-height: 80%;
+      padding: 80%;
+  }
      .modal-content {
       min-height: 80%;
       max-height: 80%;
@@ -127,7 +133,7 @@
           layer.on({
             click: function (e) {
               $("#feature-title").html(feature.properties.label);
-              $("#feature-info").html("<img src=" + feature.properties.image + " class='img-responsive' style='width: 75%; height: 75%;''>");
+              $("#feature-info").html("<img src=" + feature.properties.image + " class='img-responsive'>");
           //    $("#featureModal").modal("show");
             }
           });
