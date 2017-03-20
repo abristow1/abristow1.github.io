@@ -58,7 +58,7 @@ in production you'd be better off hosting these libraries yourself -->
   /* Permits */
 
 var permits = L.esri.Cluster.featureLayer({
-  url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/1',
+  url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/0',
   style: {
     color: '#F38400'
   }
@@ -72,9 +72,9 @@ permits.bindPopup(function(feature){
     var permits2 = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
-        layer.bindPopup(feature.properties.PmtAFIN)
+        layer.bindPopup(feature.properties.AFIN)
       },
-      url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/1',
+      url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/0',
       style: function (feature){
         if (feature.properties.MediaDesc == "Water-NPDES"){
           return {
