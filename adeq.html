@@ -69,13 +69,12 @@ permits.bindPopup(function(feature){
 });
 
     /* NPDES */
-    var permits2layer = L.geoJson(null);
-    var permits2 = L.esri.Cluster.featureLayer(null, {
-        url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/1',
-        onEachFeature: function (feature, layer)
+    var permits2 = L.esri.featureLayer({
+      onEachFeature: function (feature, layer)
       {
         layer.bindPopup(feature.properties.PmtAFIN)
       },
+      url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/1',
       style: function (feature){
         if (feature.properties.MediaDesc == "Water-NPDES"){
           return {
@@ -89,7 +88,6 @@ permits.bindPopup(function(feature){
         }
       }
     });
-
    
     
     /*Layer Control*/ 
