@@ -68,17 +68,23 @@ permits.bindPopup(function(feature){
   return L.Util.template('<strong>{entity_name}</strong><br>', feature.properties.PmtAFIN);
 });
 
+    var marker_red = L.icon({
+        iconUrl: 'marker-red.png',
+        //shadowUrl: 'leaf-shadow.png',
+        iconSize:     [32, 32] // size of the icon
+    });
+
     /* NPDES */
     var permits2 = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
-        layer.bindPopup(feature.properties.AFIN)
+        layer.bindPopup(feature.properties.PmtAFIN)
       },
       url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/0',
       style: function (feature){
         if (feature.properties.MediaDesc == "Water-NPDES"){
           return {
-            color: '#F3C300',
+            icon: marker_red,
           }
         }
         if (feature.properties.MediaDesc== "RST"){
