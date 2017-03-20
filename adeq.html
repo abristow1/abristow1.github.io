@@ -65,7 +65,7 @@ var permits = L.esri.Cluster.featureLayer({
 })
 
 permits.bindPopup(function(feature){
-  return L.Util.template('<strong>{entity_name}</strong><br>', feature.properties);
+  return L.Util.template('<strong>{entity_name}</strong><br>', feature.properties.PmtAFIN);
 });
 
 
