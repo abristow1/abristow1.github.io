@@ -78,7 +78,7 @@ permits.bindPopup(function(feature){
     var permits2 = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
-        layer.bindPopup(feature.properties.FacName + '<br>'+ feature.properties.PmtAFIN + '<br>' + feature.properties.MediaDesc + '<br>' + feature.properties.PmtNbr + '<br>' + feature.properties.PmtURL)
+        layer.bindPopup(feature.properties.FacName + '<br>'+ feature.properties.PmtAFIN + '<br>' + feature.properties.MediaDesc + '<br>' + feature.properties.PmtNbr + "<br><a href='" + feature.properties.PmtURL + "'>Link</a>")
       },
       url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/0',
       style: function (feature){
