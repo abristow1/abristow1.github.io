@@ -24,6 +24,10 @@
      <script src="segs.geojson"></script>
      <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
+  <!-- Leaflet-MarkerCluster.Default-1.0.0-beta-2.0-->
+  <link rel="stylesheet" type="text/css" href="//cdn.rawgit.com/Leaflet/Leaflet.markercluster/v1.0.0-beta.2.0/dist/MarkerCluster.Default.css">
+  <!-- Leaflet-MarkerCluster-1.0.0-beta-2.0  -->
+  <link rel="stylesheet" type="text/css" href="//cdn.rawgit.com/Leaflet/Leaflet.markercluster/v1.0.0-beta.2.0/dist/MarkerCluster.css">
   <div id="mapid"></div>
 
   <script>
@@ -44,48 +48,20 @@
     });
 
          
-     /*Building Footprints*/
-     var building_footprints = L.esri.featureLayer({
-      onEachFeature: function (feature, layer)
-      {
-        layer.bindPopup("Parcel ID: " + feature.properties.parcel_id)
-      },
-      url: 'https://www.efsedge.com/arcgis/rest/services/Saline_County/Vector2/MapServer/21',
-      style: {
-        color: '#F2F3F4',
-        weight: 2
-      }
-    });
 
   /* Permits */
-    var permitsLayer = L.geoJson(null);
-    var permits = L.geoJson(null, {
-      
-      style: function (feature) {
-        return {
-          weight: 1,
-          opacity: 1,
-          color: '#F3C300',
-          fillColor: 'black',
-          fillOpacity: 0.2
-        };
-      },
-      onEachFeature: function (feature, layer) {
-        if (feature.properties) {
-          var permitsContent = feature.properties.PmtAFIN;
-          layer.on({
-            click: function (e) {
-              layer.bindPopup(permitsContent);
-            }
-          });
-        } 
-      }
-    });
-    
-    $.getJSON("permits_wgs.geojson", function (data) {
-      permits.addData(data);
 
-    });
+var permits = L.esri.Cluster.clusteredFeatureLayer({
+  url: 'http://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/1',
+  style: {
+    color: '#F38400'
+  }
+})
+
+permits.bindPopup(function(feature){
+  return L.Util.template('<strong>{entity_name}</strong><br>', feature.properties);
+});
+
 
 
     /* Parcels */
