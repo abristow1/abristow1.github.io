@@ -68,63 +68,28 @@ permits.bindPopup(function(feature){
   return L.Util.template('<strong>{entity_name}</strong><br>', feature.properties.PmtAFIN);
 });
 
-
-
-    /* Parcels */
-    var parcelsLayer = L.geoJson(null);
-    var parcels = L.geoJson(null, {
-      
-      style: function (feature) {
-        return {
-          weight: 1,
-          opacity: 1,
-          color: '#F3C300',
-          fillColor: 'black',
-          fillOpacity: 0.2
-        };
+    /* NPDES */
+    var permits2layer = L.geoJson(null);
+    var permits2 = L.esri.Cluster.featureLayer(null, {
+        onEachFeature: function (feature, layer)
+      {
+        layer.bindPopup(feature.properties.PmtAFIN)
       },
-      onEachFeature: function (feature, layer) {
-        if (feature.properties) {
-          var parcelsContent = "<table class='table table-striped table-bordered table-condensed'>" + 
-            "<tr><th>Owner Name</th><td>" + feature.properties.ow_name + "</td></tr>" 
-            + "<tr><th>Owner Source Date</th><td>" + feature.properties.ow_src_dat + "</td></tr>" 
-            + "<tr><th>Parcel ID</th><td>" + feature.properties.parcel_id + "</td></tr>" 
-            + "<table>";
-          layer.on({
-            click: function (e) {
-              layer.bindPopup(parcelsContent);
-            }
-          });
-        }
-        layer.on({
-          mouseover: function (e) {
-            var layer = e.target;
-            layer.setStyle({
-              weight: 2,
-              fillOpacity: 0.5,
-              dashArray: '10, 5'
-            });
-          },
-          mouseout: function (e) {
-            parcels.resetStyle(e.target);
+      style: function (feature){
+        if (feature.properties.MediaDesc == "Water-NPDES"){
+          return {
+            color: '#F3C300',
           }
-        });    
+        }
+        if (feature.properties.MediaDesc== "RST"){
+          return {
+            color: '#2EFE2E',
+          }
+        }
       }
     });
-    
-    $.getJSON("parcels.geojson", function (data) {
-      parcels.addData(data);
-      parcels.setZ
-    });
 
-
-
-    /*Elevation overlay*/   
-    var imageUrl = "saline2.png",
-        imageBounds = [[34.618709020731, -92.50478665723], [34.592881718430, -92.46680533031]];
-      
-    var elevation = L.imageOverlay(imageUrl, imageBounds);
-     
+   
     
     /*Layer Control*/ 
     var baseMaps = {
@@ -134,8 +99,8 @@ permits.bindPopup(function(feature){
     };
     var overlayMaps = {
       "Permits": permits,
-      "Parcels": parcels,
-      "Elevation": elevation
+      "Permits 2": permits2
+
     };
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
