@@ -81,6 +81,18 @@ permits.bindPopup(function(feature){
         layer.bindPopup(feature.properties.FacName + '<br>'+ feature.properties.PmtAFIN + '<br>' + feature.properties.MediaDesc + '<br>' + feature.properties.PmtNbr + "<br><a href='" + feature.properties.PmtURL + "'>Link</a>")
       },
       url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/0',
+        icon: function (feature){
+        if (feature.properties.MediaDesc == "Water-NPDES"){
+          return {
+            icon: marker_red,
+          }
+        }
+        if (feature.properties.MediaDesc== "RST"){
+          return {
+            color: '#2EFE2E',
+          }
+        }
+      },
       style: function (feature){
         if (feature.properties.MediaDesc == "Water-NPDES"){
           return {
