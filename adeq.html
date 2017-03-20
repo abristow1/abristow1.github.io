@@ -78,13 +78,13 @@ permits.bindPopup(function(feature){
     var permits2 = L.esri.featureLayer({
       onEachFeature: function (feature, layer)
       {
-        layer.bindPopup(feature.properties.PmtAFIN)
+        layer.bindPopup(feature.properties.FacName + '<br>'+ feature.properties.PmtAFIN + '<br>' + feature.properties.MediaDesc + '<br>' + feature.properties.PmtNbr)
       },
       url: 'https://gis.adeq.state.ar.us/arcgis/rest/services/EnviroView_Data/MapServer/0',
       style: function (feature){
         if (feature.properties.MediaDesc == "Water-NPDES"){
           return {
-            icon: marker_red,
+            icon: 'marker_red',
           }
         }
         if (feature.properties.MediaDesc== "RST"){
