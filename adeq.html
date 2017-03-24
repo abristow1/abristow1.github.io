@@ -43,7 +43,7 @@ in production you'd be better off hosting these libraries yourself -->
   <script>
 
   var crs = new L.Proj.CRS("EPSG:3433","+proj=lcc +lat_1=36.23333333333333 +lat_2=34.93333333333333 +lat_0=34.33333333333334 +lon_0=-92 +x_0=399999.99998984 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs", {
-    origin: [-122328300.0, 153372800.0],
+    origin: [1019341.6297481097, 259837.7336115986],
     resolutions: [
       520.8333333333334,
       260.4166666666667,
@@ -58,6 +58,11 @@ in production you'd be better off hosting these libraries yourself -->
       0.5208333333333334
     ]
   });
+
+XMin: 1019341.6297481097
+YMin: 46778.7336115986
+XMax: 1367347.7118274532
+YMax: 259837.7336115986
 
     /* BASEMAPS */
     var mymap = L.map('mapid', {crs: crs});
