@@ -45,7 +45,7 @@ in production you'd be better off hosting these libraries yourself -->
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
     var dem = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});
 
-    var bareEarth = L.esri.dynamicMapLayer({url: "http://www.pagis.org/arcgis/rest/services/MAPS/Terrain_BareEarth/MapServer"});
+    var bareEarth = L.esri.tiledMapLayer({url: "https://www.pagis.org/arcgis/rest/services/MAPS/Terrain_BareEarth/MapServer"});
 
     var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
       attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
