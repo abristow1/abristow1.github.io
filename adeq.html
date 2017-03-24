@@ -59,13 +59,10 @@ in production you'd be better off hosting these libraries yourself -->
     ]
   });
 
-XMin: 1019341.6297481097
-YMin: 46778.7336115986
-XMax: 1367347.7118274532
-YMax: 259837.7336115986
+
 
     /* BASEMAPS */
-    var mymap = L.map('mapid', {crs: crs});
+    var mymap = L.map('mapid', {crs: crs}).setView([1019340, 259836], 2);
      
     var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
