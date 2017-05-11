@@ -49,6 +49,7 @@
     .leaflet-bar a {
       background: rgba(255,255,255,0.8);
     }
+
     /*.modal-body {
       position: relative;
       overflow-y: auto;
@@ -121,6 +122,7 @@
     "`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' 
     
     */ 
+
     /* BASEMAPS */
     var mymap = L.map('mapid').setView([34.60571370411983, -92.48319983482362], 17);
     
@@ -132,11 +134,13 @@
     
     /* DEM */
     /*var dem = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});*/
+
     /* EFS Saline 2016 Imagery*/
     /*var saline2016 = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer"});*/
     
     /*EFS Bryant Master Map*/
     var bryantmaster = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer"});
+
     /* Stamen Toner Basemap */
     var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
       attribution: 'Map tiles by <a href="https://stamen.com">Stamen Design</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -145,12 +149,14 @@
       maxZoom: 20,
       ext: 'png'
     });
+
     /* Bridges */
     var bridgeMarker = L.icon({
         iconUrl: 'marker-red.png',
         //shadowUrl: 'leaf-shadow.png',
         iconSize:     [32, 32] // size of the icon
     });
+
     var bridges = L.geoJson(null, {
       pointToLayer: function(feature, latlng) {
         var marker = L.marker(latlng, {icon: bridgeMarker});
@@ -172,6 +178,7 @@
     $.getJSON("bridges.geojson", function (data) {
       bridges.addData(data);
      });
+
     /* ANHC Area */
     var anhcLayer = L.geoJson(null);
     var anhc = L.geoJson(null, {
@@ -190,6 +197,7 @@
     $.getJSON("anhc.geojson", function (data){
       anhc.addData(data);
     });
+
          
     /* Building Footprints */
     var footprintsLayer = L.geoJson(null);
@@ -209,6 +217,7 @@
     $.getJSON("footprints.geojson", function (data){
       footprints.addData(data);
     });
+
     /* Contours */
     var contoursLayer = L.geoJson(null);
     var contours = L.geoJson(null, {
@@ -234,27 +243,13 @@
     $.getJSON("contours.geojson", function (data){
       contours.addData(data);
     });
-    /*Existing Trails Outline*/
-    /*
-    var trails_outlineLayer = L.geoJson(null);
-    var trails_outline = L.geoJson(null, {
-      style: function (feature){
-        return {
-          color: "#222222",
-          weight:"8.0",
-        }
-      }
-    });
-    $.getJSON("mills_trails.geojson", function (data){
-      trails_outline.addData(data);
-    });
-    trails_outline.addTo(mymap);
-    trails_outline.bringToFront();
-    */
-    /*Existing Trails*/
-    /*
-    var trailsLayer = L.geoJson(null);
-    var trails = L.geoJson(null, {
+
+
+
+
+    /*Paved*/
+    var pavedLayer = L.geoJson(null);
+    var paved = L.geoJson(null, {
       style: function (feature){
         return {
           color: "#848482",
@@ -262,12 +257,73 @@
         }
       }
     });
-    $.getJSON("mills_trails.geojson", function (data){
-      trails.addData(data);
+    $.getJSON("paved.geojson", function (data){
+      paved.addData(data);
     });
-    trails.addTo(mymap);
-    trails.bringToFront();
-    */
+    paved.addTo(mymap);
+
+    /*Official Existing*/
+    var trailLayer = L.geoJson(null);
+    var trail = L.geoJson(null, {
+      style: function (feature){
+        return {
+          color: "#00FF7F",
+          weight:"4.0",
+        }
+      }
+    });
+    $.getJSON("trail.geojson", function (data){
+      trail.addData(data);
+    });
+    trail.addTo(mymap);
+
+    /*Phase 1*/
+    var phase1Layer = L.geoJson(null);
+    var phase1 = L.geoJson(null, {
+      style: function (feature){
+        return {
+          color: "#F38400",
+          weight:"4.0",
+        }
+      }
+    });
+    $.getJSON("phase1.geojson", function (data){
+      phase1.addData(data);
+    });
+    phase1.addTo(mymap);
+
+    /*Phase 2*/
+    var phase2Layer = L.geoJson(null);
+    var phase2 = L.geoJson(null, {
+      style: function (feature){
+        return {
+          color: "#DCD300",
+          weight:"4.0",
+        }
+      }
+    });
+    $.getJSON("phase2.geojson", function (data){
+      phase2.addData(data);
+    });
+    phase2.addTo(mymap);
+
+    /*Removal*/
+    var removalLayer = L.geoJson(null);
+    var removal = L.geoJson(null, {
+      style: function (feature){
+        return {
+          color: "#BE0032",
+          weight:"4.0",
+        }
+      }
+    });
+    $.getJSON("removal.geojson", function (data){
+      removal.addData(data);
+    });
+    removal.addTo(mymap);
+ 
+
+
     /* Parcels */
     var parcelsLayer = L.geoJson(null);
     var parcels = L.geoJson(null, {
@@ -314,68 +370,9 @@
       parcels.addData(data);
       parcels.setZ
     });
-    /*Segments Outline*/
-    var segments_outlineLayer = L.geoJson(null);
-    var segments_outline = L.geoJson(null, {
-      style: function (feature){
-        return {
-          color: "#222222",
-          weight:"8.0",
-        }
-      }
-    });
-    $.getJSON("trails.geojson", function (data){
-      segments_outline.addData(data);
-    });
-    segments_outline.addTo(mymap);
-    segments_outline.bringToFront();
-    /* Segments */
-    var segmentsLayer = L.geoJson(null);
-    var segments = L.geoJson(null, {
-      style: function (feature){
-        if (feature.properties.TYPE == "nothing"){
-          return {
-            color: '#848482',
-            weight: '4.0',
-          }
-        }
-        if (feature.properties.TYPE == "Official Existing"){
-          return {
-            color: '#00FF7F',
-            weight: '4.0',
-          }
-        }
-        if (feature.properties.TYPE == "Trail Expansion"){
-          return {
-            color: '#F38400',
-            weight: '4.0',
-          }
-        }
-        if (feature.properties.TYPE == "Unofficial Existing"){
-          return {
-            color: '#DCD300',
-            weight: '4.0',
-          }
-        }
-        if (feature.properties.TYPE == "Existing Paved"){
-          return {
-            color: '#848482',
-            weight: '4.0',
-          }
-        }
-        if (feature.properties.TYPE == "Trail Removal"){
-          return {
-            color: '#BE0032',
-            weight: '4.0',
-          }
-        }
-      }
-    });
-    $.getJSON("all_trails.geojson", function (data){
-      segments.addData(data);
-    });
-    segments.addTo(mymap);
-    segments.bringToFront();
+
+ 
+
     /*Elevation overlay*/   
     /*var imageUrl = "saline2.png",
         imageBounds = [[34.618709020731, -92.50478665723], [34.592881718430, -92.46680533031]];
@@ -392,28 +389,24 @@
       /*"Toner": Stamen_TonerLite*/
     };
     var overlayMaps = {
+
       "<b>ANHC Natural Area</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<i><b>Pending Authorization</b></i>)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='anhc.png' width='12' height='12'>": anhc,
       "<b>Bridge Locations</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<i><b>click markers to view images</b></i>)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='marker-red.png' width='12' height='12'>": bridges,
       "<b>Building Footprints</b></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='building_footprint.png' width='12' height='12'>": footprints,
       "<b>Contours</b></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b><font color='2EFE2E' > ———  </font></b>": contours,
-      "<b>Parcel Information</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<i><b>click parcels for details</b></i>)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='parcel.png' width='12' height='12'><br><br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Multi-Use Trail System</u></b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Official Existing</b></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='oexisting.png' width='32' height='4'><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Unofficial Existing</b></br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='uexisting.png' width='32' height='4'><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Existing Paved</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='paved.png' width='32' height='4'><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Proposed Trail Expansion<br></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='expansion.png' width='32' height='4'><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Proposed Trail Removal<br></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='removal.png' width='32' height='4'><br>": parcels,
+      "<b>Parcel Information</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<i><b>click parcels for details</b></i>)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='parcel.png' width='12' height='12'><br><br><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<u>Multi-Use Trail System</u></b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;": parcels,
+      "<b>Existing Paved</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='paved.png' width='12' height='12'>":paved,
+      "<b>Existing Trail</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='oexisting.png' width='12' height='12'>":trail,
+      "<b>Trail Section to be Decommissioned</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='removal.png' width='12' height='12'>":removal,
+      "<b>Phase 1 Trail Expansion</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='expansion.png' width='12' height='12'>":phase1,
+      "<b>Phase 2 Trail Expansion</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='uexisting.png' width='12' height='12'>":phase2,
       /*"Elevation": elevation*/
     };
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(mymap);
-   /* mymap.on("overlayadd", function (event) {
-      trails_outline.bringToFront();
-    });
-    mymap.on("overlayadd", function (event) {
-      trails.bringToFront();
-    }); */
-    mymap.on("overlayadd", function (event) {
-      segments_outline.bringToFront();
-    });
-    mymap.on("overlayadd", function (event) {
-      segments.bringToFront();
-    });
+
+
       
   </script>
 
