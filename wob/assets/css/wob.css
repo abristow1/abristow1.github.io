@@ -1,0 +1,72 @@
+.feature-row {
+  cursor: pointer;
+  display: flex;
+  flex-wrap:wrap;
+  border-bottom: 1px solid #333333;
+}
+td {
+  display:block;
+  flex:1; /* to evenly distributs flex elements */
+}
+.feature-name{
+  width: 80%;
+  flex: auto;
+}
+.logo{
+  width: 10%;
+  flex: auto;
+}
+.chevron{
+  width: 10%;
+  flex: auto;
+}
+.special-row{
+  width: 100%;
+  flex: auto;
+}
+.feature-area{
+  width: 100%;
+  flex: auto;
+}
+.feature-protection{
+  width: 100%;
+  flex: auto;
+}
+.info-row{
+  cursor: pointer;
+  display: flex;
+  flex-wrap:wrap;
+}
+.info {
+	padding: 6px 8px;
+	font: 14px/16px Arial, Helvetica, sans-serif;
+	background: white;
+	background: rgba(255,255,255,0.8);
+	box-shadow: 0 0 15px rgba(0,0,0,0.2);
+	border-radius: 5px;
+	width:200px;
+}
+.info h2 {
+	margin: 0 0 5px;
+	color: #777;
+}
+.leaflet-control-measure{
+  background: rgba(255,255,255,0.8);
+}
+.leaflet-control-locate a{
+  background: rgba(255,255,255,0.8);
+}
+.leaflet-bar a{
+  background: rgba(255,255,255,0.8);
+}
+
+.leaflet-popup-content-wrapper{
+  background: rgba(255,255,255,0.8);
+}
+
+.col-center-block {
+    float: none;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
