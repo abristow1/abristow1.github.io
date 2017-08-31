@@ -115,7 +115,7 @@
         if (feature.properties) {
           layer.on({
             click: function (e) {
-              $("#feature-title").html(feature.properties.name + "<br /> <video src='" + feature.properties.hls_stream + "' </video>");
+              $("#feature-title").html(feature.properties.name + "<br /> <video src=" + feature.properties.hls_stream + "</video>");
               $("#feature-info").html("test");
           //    $("#featureModal").modal("show");
             }
