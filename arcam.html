@@ -71,8 +71,7 @@
      <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
      <script src="leaflet_polygon_fill.js"></script>
-     <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/clappr/clappr@latest/dist/clappr.min.js"></script>
-
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
   <div id="mapid"></div>
 
   <script>
@@ -103,7 +102,7 @@
       ext: 'png'
     });
 
-    var player = new Clappr.Player({source: feature.properties.hls_stream_protected, parentId: "#player"});
+
 
     /* Cameras */
     var cameraMarker = L.icon({
@@ -121,7 +120,7 @@
         if (feature.properties) {
           layer.on({
             click: function (e) {
-              $("#feature-title").html(feature.properties.name);
+              $("#feature-title").html(feature.properties.name + "TEST");
               $("#feature-info").html("test");
           //    $("#featureModal").modal("show");
             }
