@@ -102,7 +102,7 @@
       ext: 'png'
     });
 
-    //var player = new Clappr.Player({source: feature.properties.hls_stream_protected, parentId: "#player"});
+    
 
     /* Cameras */
     var cameraMarker = L.icon({
@@ -113,6 +113,7 @@
     var cameras = L.geoJson(null, {
       pointToLayer: function(feature, latlng) {
         var marker = L.marker(latlng, {icon: cameraMarker});
+        var player = new Clappr.Player({source: feature.properties.hls_stream_protected, parentId: "#player"});
         marker.bindPopup('<b>' + feature.properties.name + '</b><br /><div id="player"></div>');
         return marker;
       },
