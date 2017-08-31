@@ -71,9 +71,12 @@
      <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
      <script src="leaflet_polygon_fill.js"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/clappr/latest/clappr.min.js"></script>
   <div id="mapid"></div>
 
   <script>
+
+
 
     /* BASEMAPS */
     var mymap = L.map('mapid').setView([34.60571370411983, -92.48319983482362], 17);
@@ -99,6 +102,31 @@
       ext: 'png'
     });
 
+      /*Vid*/
+       var clapprconfig = {
+        parentId: "#playerElement",
+        source: feature.properties.hls_stream_protected,
+        mute: true,
+        hideVolumeBar: true,
+        height: '100%',
+        width: '100%',
+        autoPlay: autoplay,
+        position: "top-right",
+        events: {
+          onPlay: (event.feature.getProperty('status') == "disabled") ? function () {
+            window.camera_player.stop()
+          } : function () {},
+        },
+        hlsjsConfig: {
+          xhrSetup: function (xhr, url) {
+            xhr.withCredentials = true;
+          }
+        },
+        playbackConfig: {
+          crossorigin: 'use-credentials'
+        }
+      };
+
     /* Cameras */
     var cameraMarker = L.icon({
         iconUrl: 'marker-red.png',
@@ -115,7 +143,7 @@
         if (feature.properties) {
           layer.on({
             click: function (e) {
-              $("#feature-title").html(feature.properties.name + "<br /> <video src=" + feature.properties.hls_stream + "</video>");
+              $("#feature-title").html(feature.properties.name + "<br /> <video src=" + feature.properties.hls_stream_protected + "</video>" + Clappr.Player(clapprconfig));
               $("#feature-info").html("test");
           //    $("#featureModal").modal("show");
             }
@@ -127,7 +155,6 @@
       cameras.addData(data);
      });
 
- 
 
 
     var baseMaps = {
