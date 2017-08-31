@@ -1,8 +1,9 @@
-<!DOCTYPE html>
-
 <html>
 
 <head>
+
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.1/dist/leaflet.css" />
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
    <style>
      body {
       padding: 0;
@@ -12,83 +13,102 @@
        height: 100%;
        width: 100%;
      }
+     .img-responsive-height {
+      display: block;
+      width: auto;
+      max-height: 100%
+     }
+     .modal-dialog{
+    position: relative;
+    display: table;
+    overflow-y: auto;    
+    overflow-x: auto;
+    width: auto;
+    min-width: 300px;   
+    }
+    /* Layer control */
+    @media (min-width: 767px) {
+      .leaflet-control-layers {
+      }
+    }
+    
+    .leaflet-control-layers {
+      overflow: auto;
+      background: rgba(255,255,255,0.8);
+    }
+    .leaflet-control-layers label {
+      font-weight: normal;
+      margin-bottom: 0px;
+    }
+    .leaflet-control-layers-list input[type="radio"], input[type="checkbox"] {
+      margin: 2px;
+    }
+    /* Zoom Control*/
+    .leaflet-bar a {
+      background: rgba(255,255,255,0.8);
+    }
+    /*.modal-body {
+      position: relative;
+      overflow-y: auto;
+      max-height: 80%;
+      padding: 80%;
+  }
+     .modal-content {
+      min-height: 80%;
+      max-height: 80%;
+      border-radius: 0;
+    }*/
    </style>
 </head>
 
 <body>
    
      <!-- JS -->
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-       <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
-      <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet-src.js"></script>
-     <script src="segs.geojson"></script>
-     <script src="https://unpkg.com/esri-leaflet@2.0.7"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+     
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+     <script src="https://unpkg.com/leaflet@1.0.1/dist/leaflet.js"></script>
+     <script src="https://unpkg.com/esri-leaflet@2.0.4"></script>
      <script src="https://rawgithub.com/mylen/leaflet.TileLayer.WMTS/master/leaflet-tilelayer-wmts.js"></script>
-<!-- Include Leaflet.markercluster via rawgit.com
-in production you'd be better off hosting these libraries yourself -->
-<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Leaflet/Leaflet.markercluster/v1.0.0-beta.2.0/dist/MarkerCluster.Default.css">
-<link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/Leaflet/Leaflet.markercluster/v1.0.0-beta.2.0/dist/MarkerCluster.css">
-<script src="https://cdn.rawgit.com/Leaflet/Leaflet.markercluster/v1.0.0-beta.2.0/dist/leaflet.markercluster.js"></script>
-
-<!-- Load Clustered Feature Layer from CDN -->
-<script src="https://unpkg.com/esri-leaflet-cluster@2.0.0"></script>
-
-<!-- Proj4 and Proj4Leaflet -->
-<script src="https://unpkg.com/proj4@2.3.17/dist/proj4-src.js"></script>
-<script src="https://unpkg.com/proj4leaflet@1.0.1"></script>
-
-
+     <script src="leaflet_polygon_fill.js"></script>
   <div id="mapid"></div>
 
   <script>
-  var crs = new L.Proj.CRS("EPSG:3433","+proj=lcc +lat_1=36.23333333333333 +lat_2=34.93333333333333 +lat_0=34.33333333333334 +lon_0=-92 +x_0=399999.99998984 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=us-ft +no_defs", {
-    origin: [1019341.6297481097, 259837.7336115986],
-    resolutions: [
-      520.8333333333334,
-      260.4166666666667,
-      130.20833333333334,
-      43.40277777777778,
-      20.833333333333336,
-      10.416666666666668,
-      5.208333333333334,
-      3.125,
-      2.0833333333333335,
-      1.0416666666666667,
-      0.5208333333333334
-    ]
-  });
+
     /* BASEMAPS */
-    var mymap = L.map('mapid', {crs: crs}).setView([1019340, 259836], 2);
-     
-    /*var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
+    var mymap = L.map('mapid').setView([34.60571370411983, -92.48319983482362], 17);
+    
+    /* ESRI Imagery*/ 
+    var imagery = L.esri.basemapLayer('Imagery').addTo(mymap);
+    
+    /* ESRI Labels*/
     var imageryLabels = L.esri.basemapLayer('ImageryLabels').addTo(mymap);
-    var dem = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});
-    */
-    var bareEarth = L.esri.tiledMapLayer({
-      url: "https://www.pagis.org/arcgis/rest/services/MAPS/Terrain_BareEarth/MapServer",
-      maxZoom: 10,
-      minZoom: 0,
-    }).addTo(mymap);
-    /*
-    var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
-      attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    
+    /* DEM */
+    /*var dem = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Saline_DEM/MapServer"});*/
+    /* EFS Saline 2016 Imagery*/
+    /*var saline2016 = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer"});*/
+    
+    /*EFS Bryant Master Map*/
+    var bryantmaster = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer"});
+    /* Stamen Toner Basemap */
+    var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
+      attribution: 'Map tiles by <a href="https://stamen.com">Stamen Design</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
       subdomains: 'abcd',
       minZoom: 0,
       maxZoom: 20,
       ext: 'png'
     });
-  */
-         
-  /* Cams */
-    var camMarker = L.icon({
+    /* Cameras */
+    var cameraMarker = L.icon({
         iconUrl: 'marker-red.png',
         //shadowUrl: 'leaf-shadow.png',
         iconSize:     [32, 32] // size of the icon
     });
     var cameras = L.geoJson(null, {
       pointToLayer: function(feature, latlng) {
-        var marker = L.marker(latlng, {icon: camMarker});
-        marker.bindPopup('<b>' + feature.properties.name + '</b><hr><centering><a href="#" data-toggle="modal" data-target="#featureModal">View Image</a></centering>');
+        var marker = L.marker(latlng, {icon: cameraMarker});
+        marker.bindPopup('<b>' + feature.properties.name + '</b>');
         return marker;
       },
       onEachFeature: function (feature, layer) {
@@ -96,7 +116,7 @@ in production you'd be better off hosting these libraries yourself -->
           layer.on({
             click: function (e) {
               $("#feature-title").html(feature.properties.name);
-              $("#feature-info").html("Test!");
+              $("#feature-info").html("test");
           //    $("#featureModal").modal("show");
             }
           });
@@ -106,24 +126,37 @@ in production you'd be better off hosting these libraries yourself -->
     $.getJSON("http://db9f583wfbsn9.cloudfront.net/cameras.geojson", function (data) {
       cameras.addData(data);
      });
-   
-    
-    /*Layer Control*/ 
-    var baseMaps = {
-      "PAGIS Bare Earth": bareEarth
-      /*"Imagery": imagery,
-      "Saline County Lidar": dem,
-      "Toner": Stamen_TonerLite */
-    };
-    var overlayMaps = {
-      "Cameras": cameras
 
+ 
+
+
+    var baseMaps = {
+      "<b>Imagery</b>": imagery
+    };
+
+    var overlayMaps = {
+      "<b>Camera Locations</b><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(<i><b>click markers to view images</b></i>)</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='marker-red.png' width='12' height='12'>": cameras
     };
     L.control.layers(baseMaps, overlayMaps, {
       collapsed: false
     }).addTo(mymap);
-     
+      
   </script>
+
+  <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" id="modalContent">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title text-primary" id="feature-title"></h4>
+      </div>
+      <div class="modal-body" id="feature-info"></div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
    
 </body>
 </html>
