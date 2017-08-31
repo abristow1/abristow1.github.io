@@ -89,8 +89,7 @@
     /* EFS Saline 2016 Imagery*/
     /*var saline2016 = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/Saline_County/Imagery_2016/MapServer"});*/
     
-    /*EFS Bryant Master Map*/
-    var bryantmaster = L.esri.dynamicMapLayer({url: "https://www.efsedge.com/arcgis/rest/services/BryantCity/Bryant_Master_Map1/MapServer"});
+
     /* Stamen Toner Basemap */
     var Stamen_TonerLite = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
       attribution: 'Map tiles by <a href="https://stamen.com">Stamen Design</a>, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -99,6 +98,7 @@
       maxZoom: 20,
       ext: 'png'
     });
+
     /* Cameras */
     var cameraMarker = L.icon({
         iconUrl: 'marker-red.png',
@@ -123,7 +123,7 @@
         };
       }
     });
-    $.getJSON("http://db9f583wfbsn9.cloudfront.net/cameras.geojson", function (data) {
+    $.getJSON("https://db9f583wfbsn9.cloudfront.net/cameras.geojson", function (data) {
       cameras.addData(data);
      });
 
