@@ -114,15 +114,15 @@
       pointToLayer: function(feature, latlng) {
         var marker = L.marker(latlng, {icon: cameraMarker});
         var player = new Clappr.Player({source: feature.properties.hls_stream_protected, parentId: "#player"});
-        marker.bindPopup('<b>' + feature.properties.name + '</b><br /><div id="player"></div>');
+        marker.bindPopup('<b>' + feature.properties.name + '</b><hr><centering><a href="#" data-toggle="modal" data-target="#featureModal">View Cam</a></centering>');
         return marker;
       },
       onEachFeature: function (feature, layer) {
         if (feature.properties) {
           layer.on({
             click: function (e) {
-              $("#feature-title").html(feature.properties.name + "TEST");
-              $("#feature-info").html("test");
+              $("#feature-title").html(feature.properties.name);
+              $("#feature-info").html('<div id="player"></div>');
           //    $("#featureModal").modal("show");
             }
           });
@@ -147,7 +147,7 @@
     }).addTo(mymap);
       
   </script>
-  <div id="player"></div>
+  
   <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" id="modalContent">
