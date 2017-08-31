@@ -122,7 +122,7 @@
           layer.on({
             click: function (e) {
               $("#feature-title").html(feature.properties.name);
-              $("#feature-info").html("#player");
+              $("#feature-info").html("test");
           //    $("#featureModal").modal("show");
             }
           });
@@ -147,7 +147,7 @@
     }).addTo(mymap);
       
   </script>
-  
+  <div id="player"></div>
   <div class="modal fade" id="featureModal" tabindex="-1" role="dialog">
   <div class="modal-dialog modal-lg">
     <div class="modal-content" id="modalContent">
@@ -155,9 +155,7 @@
         <button class="close" type="button" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title text-primary" id="feature-title"></h4>
       </div>
-      <div class="modal-body" id="feature-info">
-        <div id="player"></div>
-      </div>
+      <div class="modal-body" id="feature-info"></div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
