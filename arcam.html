@@ -113,7 +113,6 @@
     var cameras = L.geoJson(null, {
       pointToLayer: function(feature, latlng) {
         var marker = L.marker(latlng, {icon: cameraMarker});
-        var player = new Clappr.Player({source: feature.properties.hls_stream_protected, parentId: "#player"});
         marker.bindPopup('<b>' + feature.properties.name + '</b><hr><centering><a href="#" data-toggle="modal" data-target="#featureModal">View Cam</a></centering>');
         return marker;
       },
@@ -123,7 +122,7 @@
             click: function (e) {
               $("#feature-title").html(feature.properties.name);
               $("#feature-info").html("test");
-              $("#player").html("test");
+              var player = new Clappr.Player({source: feature.properties.hls_stream_protected, parentId: "#player"});
           //    $("#featureModal").modal("show");
             }
           });
