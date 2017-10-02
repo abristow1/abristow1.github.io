@@ -549,6 +549,133 @@ $.getJSON("data/protected.js", function (data) {
 });
 
 
+
+/* ALL Hydrogeomorphic Subclasses */
+var hgm_subclassesLayer = L.geoJson(null);
+var hgm_subclasses = L.geoJson(null, {
+  
+
+  style: function (feature) {
+    switch (feature.properties.SUBCLASS) {
+        case 'Low-gradient Riverine Overbank':
+          return {
+            weight: '0.0',
+            fillColor: '#be0032',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Connected Depression':
+          return {
+            weight: '0.0',
+            fillColor: '#dcd300',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Flat':
+          return {
+            weight: '0.0',
+            fillColor: '#8db600',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Impounded Riverine':
+          return {
+            weight: '0.0',
+            fillColor: '#0067a5',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Low-gradient Riverine Overbank':
+          return {
+            weight: '0.0',
+            fillColor: '#875692',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'River Swamp':
+          return {
+            weight: '0.0',
+            fillColor: '#a1caf1',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+          break;
+        case 'High-gradient Riverine':
+          return {
+            weight: '0.0',
+            fillColor: '#008856',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Mid-gradient Riverine':
+          return {
+            weight: '0.0',
+            fillColor: '#F3C300',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+      }
+  },
+  
+  onEachFeature: function (feature, layer) {
+    layer.on({
+      mouseover: function (e) {
+        var layer = e.target;
+        layer.setStyle({
+          weight: 2,
+          color: "#7CFC00",
+          fillOpacity: 0.8,
+          dashArray: '10, 5'
+        });
+        if (!L.Browser.ie && !L.Browser.opera) {
+          layer.bringToFront();
+        }
+        info.update(layer.feature.properties);
+      },
+      mouseout: function (e) {
+        hgmwet.resetStyle(e.target);
+        info.update();
+      }
+    });    
+  }
+});
+$.getJSON("data/hgm_subclasses.js", function (data) {
+  hgm_subclasses.addData(data);
+});
+
+
 /* Streams */
 var streamsLayer = L.geoJson(null);
 var streams = L.geoJson(null, {
@@ -690,6 +817,7 @@ var groupedOverlays = {
     "Style by Priority Ranking" : hgmwetPriority
   },
   "Reference Layers": {
+    "All Hydrogeomorphic Subclasses</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" : hgm_subclasses,
     "Maumelle City Limits</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/citylimits.png' width='12' height='12'>" : citylimits,
     "Parcels</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/parcels.png' width='12' height='12'>" : parcels,
     "Protected Wetlands</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/protected.png' width='12' height='12'>" : protectedwet,
