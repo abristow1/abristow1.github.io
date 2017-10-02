@@ -550,6 +550,7 @@ $.getJSON("data/protected.js", function (data) {
 
 
 
+
 /* ALL Hydrogeomorphic Subclasses */
 var hgm_subclassesLayer = L.geoJson(null);
 var hgm_subclasses = L.geoJson(null, {
@@ -565,7 +566,7 @@ var hgm_subclasses = L.geoJson(null, {
             weight: '0.0',
             dashArray: '',
             opacity: '1.0',
-            fillOpacity: '0.7',
+            fillOpacity: '1.0',
           };
           break;
         case 'Connected Depression':
@@ -576,7 +577,7 @@ var hgm_subclasses = L.geoJson(null, {
             weight: '0.0',
             dashArray: '',
             opacity: '1.0',
-            fillOpacity: '0.7',
+            fillOpacity: '1.0',
           };
           break;
         case 'Flat':
@@ -587,7 +588,7 @@ var hgm_subclasses = L.geoJson(null, {
             weight: '0.0',
             dashArray: '',
             opacity: '1.0',
-            fillOpacity: '0.7',
+            fillOpacity: '1.0',
           };
           break;
         case 'Impounded Riverine':
@@ -598,7 +599,7 @@ var hgm_subclasses = L.geoJson(null, {
             weight: '0.0',
             dashArray: '',
             opacity: '1.0',
-            fillOpacity: '0.7',
+            fillOpacity: '1.0',
           };
           break;
         case 'Low-gradient Riverine Overbank':
@@ -609,7 +610,7 @@ var hgm_subclasses = L.geoJson(null, {
             weight: '0.0',
             dashArray: '',
             opacity: '1.0',
-            fillOpacity: '0.7',
+            fillOpacity: '1.0',
           };
           break;
         case 'River Swamp':
@@ -620,7 +621,7 @@ var hgm_subclasses = L.geoJson(null, {
             weight: '0.0',
             dashArray: '',
             opacity: '1.0',
-            fillOpacity: '0.7',
+            fillOpacity: '1.0',
           };
           break;
           break;
@@ -632,7 +633,7 @@ var hgm_subclasses = L.geoJson(null, {
             weight: '0.0',
             dashArray: '',
             opacity: '1.0',
-            fillOpacity: '0.7',
+            fillOpacity: '1.0',
           };
           break;
         case 'Mid-gradient Riverine':
@@ -643,7 +644,7 @@ var hgm_subclasses = L.geoJson(null, {
             weight: '0.0',
             dashArray: '',
             opacity: '1.0',
-            fillOpacity: '0.7',
+            fillOpacity: '1.0',
           };
           break;
       }
@@ -662,11 +663,9 @@ var hgm_subclasses = L.geoJson(null, {
         if (!L.Browser.ie && !L.Browser.opera) {
           layer.bringToFront();
         }
-        info.update(layer.feature.properties);
       },
       mouseout: function (e) {
         hgmwet.resetStyle(e.target);
-        info.update();
       }
     });    
   }
@@ -674,6 +673,7 @@ var hgm_subclasses = L.geoJson(null, {
 $.getJSON("data/hgm_subclasses.js", function (data) {
   hgm_subclasses.addData(data);
 });
+
 
 
 /* Streams */
