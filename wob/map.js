@@ -173,12 +173,11 @@ var topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/USA_
 
 
 
-/* Overlay Layers */
+/**** Overlay Layers ****/
 var highlight = L.geoJson(null);
 var highlightStyle = {
   color: "#7CFC00"
 };
-
 
 
 var citylimitsLayer = L.geoJson(null);
@@ -202,7 +201,7 @@ $.getJSON("data/citylimits.js", function (data) {
   citylimits.addData(data);
 });
 
-
+/* WOB Watershed */
 var watershedLayer = L.geoJson(null);
 var watershed = L.geoJson(null, {
 
@@ -224,7 +223,7 @@ $.getJSON("data/watershed.js", function (data) {
   watershed.addData(data);
 });
 
-
+/* Parcel Information */
 var parcelsLayer = L.geoJson(null);
 var parcels = L.geoJson(null, {
   
@@ -279,7 +278,7 @@ $.getJSON("data/parcels_filter.js", function (data) {
   parcels.addData(data);
 });
 
-
+/* Wetlands */
 var hgmwetLayer = L.geoJson(null);
 var hgmwet = L.geoJson(null, {
   
@@ -407,7 +406,7 @@ $.getJSON("data/hgmwet.js", function (data) {
   hgmwet.addData(data);
 });
 
-
+/* Wetland Priority Layer */
 var hgmwetPriorityLayer = L.geoJson(null);
 var hgmwetPriority = L.geoJson(null, {
   
@@ -550,6 +549,7 @@ $.getJSON("data/protected.js", function (data) {
 });
 
 
+/* Streams */
 var streamsLayer = L.geoJson(null);
 var streams = L.geoJson(null, {
 
