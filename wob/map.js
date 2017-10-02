@@ -812,7 +812,7 @@ var groupedOverlays = {
 };
 
 var option = {
-  exclusiveGroups: ["Wetlands"],
+  exclusiveGroups: ["Hydrogeomorphic Subclasses"],
   collapsed: isCollapsed,
   position: 'topright'
 };
