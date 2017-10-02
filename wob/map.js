@@ -652,21 +652,6 @@ var hgm_subclasses = L.geoJson(null, {
   
   onEachFeature: function (feature, layer) {
     layer.on({
-      mouseover: function (e) {
-        var layer = e.target;
-        layer.setStyle({
-          weight: 2,
-          color: "#7CFC00",
-          fillOpacity: 0.8,
-          dashArray: '10, 5'
-        });
-        if (!L.Browser.ie && !L.Browser.opera) {
-          layer.bringToFront();
-        }
-      },
-      mouseout: function (e) {
-        hgmwet.resetStyle(e.target);
-      }
     });    
   }
 });
