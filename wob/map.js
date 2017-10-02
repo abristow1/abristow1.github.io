@@ -797,12 +797,12 @@ var baseLayers = {
 };
 
 var groupedOverlays = {
-  "Wetlands": {
-    "Style by HGM Subclass" : hgmwet,
-    "Style by Priority Ranking" : hgmwetPriority
+  "Hydrogeomorphic Subclasses": {
+    "Wetlands by Class" : hgmwet,
+    "Wetlands by Priority Ranking" : hgmwetPriority,
+    "All Hydrogeomorphic Subclasses" : hgm_subclasses
   },
   "Reference Layers": {
-    "All Hydrogeomorphic Subclasses</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" : hgm_subclasses,
     "Maumelle City Limits</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/citylimits.png' width='12' height='12'>" : citylimits,
     "Parcels</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/parcels.png' width='12' height='12'>" : parcels,
     "Protected Wetlands</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/protected.png' width='12' height='12'>" : protectedwet,
