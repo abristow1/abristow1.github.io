@@ -205,8 +205,6 @@ $.getJSON("data/citylimits.js", function (data) {
 var watershedLayer = L.geoJson(null);
 var watershed = L.geoJson(null, {
 
-
-
 style: function (feature) {
   return {
     weight: 6,
@@ -220,6 +218,26 @@ style: function (feature) {
 
 });
 $.getJSON("data/watershed.js", function (data) {
+  watershed.addData(data);
+});
+
+/* 200ft Buffer */
+var nfhl_buffLayer = L.geoJson(null);
+var nfhl_buff = L.geoJson(null, {
+
+style: function (feature) {
+  return {
+    weight: 6,
+    opacity: 1,
+    color: '#882D17',
+    fillColor: 'black',
+    fillOpacity: 0.2
+  };
+},
+    
+
+});
+$.getJSON("data/nfhl_buff.js", function (data) {
   watershed.addData(data);
 });
 
@@ -558,7 +576,7 @@ var hgm_subclasses = L.geoJson(null, {
 
   style: function (feature) {
     switch (feature.properties.SUBCLASS) {
-        case 'Low-gradient Riverine Overbank':
+        case 'Low-gradient Riverine Backwater':
           return {
             weight: '0.0',
             fillColor: '#be0032',
@@ -803,6 +821,7 @@ var groupedOverlays = {
     "All Hydrogeomorphic Subclasses" : hgm_subclasses
   },
   "Reference Layers": {
+    "200 Foot Buffer</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/citylimits.png' width='12' height='12'>" : nfhl_buff,
     "Maumelle City Limits</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/citylimits.png' width='12' height='12'>" : citylimits,
     "Parcels</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/parcels.png' width='12' height='12'>" : parcels,
     "Protected Wetlands</br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src='assets/img/legend/protected.png' width='12' height='12'>" : protectedwet,
