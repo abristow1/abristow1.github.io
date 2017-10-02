@@ -238,7 +238,7 @@ style: function (feature) {
 
 });
 $.getJSON("data/nfhl_buff.js", function (data) {
-  watershed.addData(data);
+  nfhl_buff.addData(data);
 });
 
 /* Parcel Information */
