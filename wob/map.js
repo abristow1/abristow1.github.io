@@ -127,9 +127,8 @@ function syncSidebar() {
 }
 
 
-/* Basemap Layers */
+/**** Basemap Layers ****/
 var aerial = L.esri.basemapLayer('Imagery');
-
 var terrain = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', {
   maxNativeZoom:18, 
   maxZoom:22
@@ -137,7 +136,6 @@ var terrain = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', {
 var ADOP2017 = L.esri.imageMapLayer({
   url: 'http://gis.arkansas.gov/arcgis/rest/services/ImageServices/Statewide_ADOP_2017/ImageServer'
 });
-  
 var topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/USA_Topo_Maps/MapServer/tile/{z}/{y}/{x}', {
   'attribution': 'National Geographic Society, i-cubed',
   'minZoom': 1,
@@ -169,8 +167,6 @@ style: function (feature) {
     fillOpacity: 0.2
   };
 },
-    
-
 });
 $.getJSON("data/citylimits.js", function (data) {
   citylimits.addData(data);
@@ -189,8 +185,6 @@ style: function (feature) {
     fillOpacity: 0.2
   };
 },
-    
-
 });
 $.getJSON("data/watershed.js", function (data) {
   watershed.addData(data);
@@ -209,8 +203,6 @@ style: function (feature) {
     fillOpacity: 0.2
   };
 },
-    
-
 });
 $.getJSON("data/nfhl_buff.js", function (data) {
   nfhl_buff.addData(data);
@@ -683,7 +675,7 @@ $.getJSON("data/streams.js", function (data) {
 
 map = L.map("map", {
   zoom: 10,
-  layers: [bing, hgmwet, hgmwetLayer],
+  layers: [aerial, hgmwet, hgmwetLayer],
   zoomControl: false,
   attributionControl: false
 }).fitBounds([[34.7904422722,-92.482751701],[34.8957010045,-92.2342986907]]);
