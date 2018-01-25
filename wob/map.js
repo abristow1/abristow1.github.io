@@ -155,14 +155,10 @@ var bing2 = new L.BingLayer("LfO3DMI9S6GnXD7d0WGs~bq2DRVkmIAzSOFdodzZLvw~Arx8dcl
   maxNativeZoom:18, 
   maxZoom:22
 });       
-var mapquestHYB = L.layerGroup([L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
-  maxZoom: 18,
-  subdomains: ["otile1-s", "otile2-s", "otile3-s", "otile4-s"]
-}), L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/hyb/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  subdomains: ["otile1-s", "otile2-s", "otile3-s", "otile4-s"],
-  attribution: 'Labels courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
-})]);
+var ADOP2017 = L.esri.imageMapLayer({
+  url: 'https://http://gis.arkansas.gov/arcgis/rest/services/ImageServices/Statewide_ADOP_2017/ImageServer'
+});
+  
 var topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/USA_Topo_Maps/MapServer/tile/{z}/{y}/{x}', {
   'attribution': 'National Geographic Society, i-cubed',
   'minZoom': 1,
@@ -804,7 +800,7 @@ if (document.body.clientWidth <= 767) {
 
 var baseLayers = {
   "Aerial": bing2,
-  "Alternate Aerial ": mapquestHYB,
+  "Alternate Aerial ": ADOP2017,
   "Terrain" : terrain,
   "Topographic" : topo,
   "Street Map": mapquestOSM,
