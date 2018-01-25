@@ -133,7 +133,7 @@ var terrain = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', {
   maxNativeZoom:18, 
   maxZoom:22
 }); 
-var ADOP2017 = L.esri.imageMapLayer({
+var adop = L.esri.imageMapLayer({
   url: 'https://gis.arkansas.gov/arcgis/rest/services/ImageServices/Statewide_ADOP_2017/ImageServer'
 });
 var topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/USA_Topo_Maps/MapServer/tile/{z}/{y}/{x}', {
@@ -771,9 +771,9 @@ if (document.body.clientWidth <= 767) {
 
 var baseLayers = {
   "Aerial": aerial,
-  "Alternate Aerial ": ADOP2017,
+  "Alternate Aerial": adop,
   "Terrain" : terrain,
-  "Topographic" : topo,
+  "Topographic" : topo
 };
 
 var groupedOverlays = {
