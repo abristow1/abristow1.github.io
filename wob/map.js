@@ -156,7 +156,7 @@ var bing2 = new L.BingLayer("LfO3DMI9S6GnXD7d0WGs~bq2DRVkmIAzSOFdodzZLvw~Arx8dcl
   maxZoom:22
 });       
 var ADOP2017 = L.esri.imageMapLayer({
-  url: 'https://http://gis.arkansas.gov/arcgis/rest/services/ImageServices/Statewide_ADOP_2017/ImageServer'
+  url: 'http://gis.arkansas.gov/arcgis/rest/services/ImageServices/Statewide_ADOP_2017/ImageServer'
 });
   
 var topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/USA_Topo_Maps/MapServer/tile/{z}/{y}/{x}', {
