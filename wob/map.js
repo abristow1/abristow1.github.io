@@ -134,7 +134,7 @@ var terrain = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', {
   maxZoom:22
 }); 
 var ADOP2017 = L.esri.imageMapLayer({
-  url: 'http://gis.arkansas.gov/arcgis/rest/services/ImageServices/Statewide_ADOP_2017/ImageServer'
+  url: 'https://gis.arkansas.gov/arcgis/rest/services/ImageServices/Statewide_ADOP_2017/ImageServer'
 });
 var topo = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/USA_Topo_Maps/MapServer/tile/{z}/{y}/{x}', {
   'attribution': 'National Geographic Society, i-cubed',
