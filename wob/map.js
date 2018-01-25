@@ -128,33 +128,12 @@ function syncSidebar() {
 
 
 /* Basemap Layers */
-var mapquestOSM = L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png", {
-  maxZoom: 19,
-  subdomains: ["otile1-s", "otile2-s", "otile3-s", "otile4-s"],
-  attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="https://developer.mapquest.com/content/osm/mq_logo.png">. Map data (c) <a href="http://www.openstreetmap.org/" target="_blank">OpenStreetMap</a> contributors, CC-BY-SA.'
-});
-var mapquestOAM = L.tileLayer("https://{s}.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg", {
-  maxZoom: 18,
-  subdomains: ["otile1-s", "otile2-s", "otile3-s", "otile4-s"],
-  attribution: 'Tiles courtesy of <a href="http://www.mapquest.com/" target="_blank">MapQuest</a>. Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
-});
-var imagerySet = "AerialWithLabels"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road
-var bing = new L.BingLayer("LfO3DMI9S6GnXD7d0WGs~bq2DRVkmIAzSOFdodzZLvw~Arx8dclDxmZA0Y38tHIJlJfnMbGq5GXeYmrGOUIbS2VLFzRKCK0Yv_bAl6oe-DOc", {
-  type: imagerySet, 
-  maxNativeZoom:18, 
-  maxZoom:22,
-  attribution: 'something about bing'
-});
+var aerial = L.esri.basemapLayer('Imagery');
+
 var terrain = L.tileLayer('http://a.tile.stamen.com/terrain/{z}/{x}/{y}.png', {
   maxNativeZoom:18, 
   maxZoom:22
 }); 
-var imagerySet2 = "Aerial"; // AerialWithLabels | Birdseye | BirdseyeWithLabels | Road
-var bing2 = new L.BingLayer("LfO3DMI9S6GnXD7d0WGs~bq2DRVkmIAzSOFdodzZLvw~Arx8dclDxmZA0Y38tHIJlJfnMbGq5GXeYmrGOUIbS2VLFzRKCK0Yv_bAl6oe-DOc", {
-  type: imagerySet2, 
-  maxNativeZoom:18, 
-  maxZoom:22
-});       
 var ADOP2017 = L.esri.imageMapLayer({
   url: 'http://gis.arkansas.gov/arcgis/rest/services/ImageServices/Statewide_ADOP_2017/ImageServer'
 });
@@ -799,15 +778,10 @@ if (document.body.clientWidth <= 767) {
 }
 
 var baseLayers = {
-  "Aerial": bing2,
+  "Aerial": aerial,
   "Alternate Aerial ": ADOP2017,
   "Terrain" : terrain,
   "Topographic" : topo,
-  "Street Map": mapquestOSM,
-  
-  
-  "Aerial (with labels)": bing
-  
 };
 
 var groupedOverlays = {
