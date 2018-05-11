@@ -1,53 +1,22 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
-<style>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-body {
-  background: #333;
-}
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-circle {
-  stroke: #000;
-  stroke-width: 1.5px;
-}
-  
-svg {
-  width: 100%;
-  height: 100%;
-  }
+    <title>Hello, world!</title>
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
 
-</style>
-<svg width="960" height="960"><g transform="translate(480,480)"></g></svg>
-<script src="//d3js.org/d3.v4.0.0-alpha.35.min.js"></script>
-<script>
-
-var svg = d3.select("svg"),
-    width = +svg.attr("width"),
-    height = +svg.attr("height"),
-    size = Math.max(width, height);
-
-var color = d3.scaleRainbow()
-    .domain([0, 2 * Math.PI]);
-
-var circles = d3.packSiblings(d3.range(2000)
-    .map(d3.randomUniform(8, 26))
-    .map(function(r) { return {r: r}; }))
-  .filter(function(d) { return -500 < d.x && d.x < 500 && -500 < d.y && d.y < 500; });
-
-svg
-  .select("g")
-  .selectAll("circle")
-  .data(circles)
-  .enter().append("circle")
-    .style("fill", function(d) { return color(d.angle = Math.atan2(d.y, d.x)); })
-    .attr("cx", function(d) { return Math.cos(d.angle) * (size / Math.SQRT2 + 30); })
-    .attr("cy", function(d) { return Math.sin(d.angle) * (size / Math.SQRT2 + 30); })
-    .attr("r", function(d) { return d.r - 0.25; })
-  .transition()
-    .ease(d3.easeCubicOut)
-    .delay(function(d) { return Math.sqrt(d.x * d.x + d.y * d.y) * 10; })
-    .duration(1000)
-    .attr("cx", function(d) { return d.x; })
-    .attr("cy", function(d) { return d.y; });
-
-</script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
