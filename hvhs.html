@@ -7,8 +7,8 @@
         <meta name="mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="stylesheet" href="http://unpkg.com/leaflet@1.0.3/dist/leaflet.css"><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css"><!--link rel="stylesheet" href="css/L.Control.Locate.min.css"-->
-        <link rel="stylesheet" href="css/qgis2web.css">
-        <link rel="stylesheet" href="css/leaflet-search.css">
+        <!--link rel="stylesheet" href="css/qgis2web.css">
+        <link rel="stylesheet" href="css/leaflet-search.css"-->
         <style>
         html, body, #map {
             width: 100%;
@@ -102,7 +102,7 @@
         map.getPane('pane_parcels').style.zIndex = 399;
         map.getPane('pane_parcels').style['mix-blend-mode'] = 'normal';
         var parcels = L.esri.featureLayer({
-  		url: 'http://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6',
+  		url: 'https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6',
   		simplifyFactor: 0.35,
   		precision: 5,
   		fields: ['OBJECTID','parcel_id', 'ow_name', 'ph_add'],
@@ -143,7 +143,7 @@
         //var hash = new L.Hash(map);
 
         /* Map Attribution */
-        map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
+        //map.attributionControl.addAttribution('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a>');
 
         /* Initialize Find My Location */
         //L.control.locate().addTo(map);
