@@ -130,7 +130,26 @@ var dem = L.esri.imageMapLayer({
   renderingRule: renderingRule
 });
 
+var propboundLayer = L.geoJson(null);
+var propbound = L.geoJson(null, {
+    onEachFeature: function (feature, layer)
+  {
 
+  },
+  style: function (feature) {
+    return {
+      weight: 1,
+      opacity: 1,
+      color: '#FF0000',
+      //fillColor: 'b',
+      //fillOpacity: 0.2
+    };
+    }
+}).addTo(map);
+
+$.getJSON("PropertyBoundary.geojson", function (data){
+  reaches.addData(data);
+});
 
 
 
