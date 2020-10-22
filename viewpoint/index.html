@@ -138,17 +138,19 @@ var propbound = L.geoJson(null, {
   },
   style: function (feature) {
     return {
-      weight: 1,
-      opacity: 1,
+      weight: '0.0',
+      fillColor: '#0067a5',
       color: '#FF0000',
-      //fillColor: 'b',
-      //fillOpacity: 0.2
+      weight: '1.5',
+      dashArray: '',
+      opacity: '1.0',
+      fillOpacity: '0.0',
     };
     }
 }).addTo(map);
 
 $.getJSON("PropertyBoundary.geojson", function (data){
-  reaches.addData(data);
+  propnound.addData(data);
 });
 
 
