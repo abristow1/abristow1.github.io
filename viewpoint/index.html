@@ -1,0 +1,259 @@
+
+<!--
+
+first attempt at creating a graph from
+points loaded from an ArcGIS REST feature layer and/or map layer
+
+No issues streaming the ESRI REST layer to a d3 graph. Issue with usable graph
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+  <link  href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.min.css" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+  <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/esri-leaflet/dist/esri-leaflet.js"></script>
+  <link rel="stylesheet" href="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.css" />
+  <script src="https://ppete2.github.io/Leaflet.PolylineMeasure/Leaflet.PolylineMeasure.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/esri-leaflet-geocoder@2.2.12/dist/esri-leaflet-geocoder.css">
+  <script src="https://unpkg.com/esri-leaflet-geocoder@2.2.12/dist/esri-leaflet-geocoder.js"></script>
+
+
+  <style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    html, body, #map {
+        height: 100%;
+        width: 100%;
+        position: fixed;
+    }
+    #pixelValue {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 1000;
+      background: white;
+      padding: 1em;
+    }
+    .modal-dialog{
+       position: relative;
+       display: table;
+       overflow-y: auto;
+       overflow-x: auto;
+       width: auto;
+       min-width: 300px;
+    }
+    circle {
+      fill: gold;
+      stroke: black;
+    }
+
+    .coin-text {
+      opacity: 0.6;
+      font-size: 12px;
+    }
+
+    .counter {
+      font-size: 20px;
+    }
+
+    .animate {
+      color: black;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+  </style>
+</head>
+
+<body id="body">
+
+
+
+
+<div class="modal fade" id="feature_modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title text-primary" id="feature_modal_title"></h4>
+      </div>
+      <div class="modal-body" id="feature_modal_body">
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+
+
+
+<div id="map"></div>
+<div id="pixelValue" class="leaflet-bar">Click map for elevation</div>
+
+<script>
+
+var map = L.map('map').setView([33.69879717851967, -94.43568706512453], 16);
+
+var esri_aerial_firefly = L.esri.basemapLayer('ImageryFirefly').addTo(map);
+
+///Hillshade DEM
+var renderingRule = {
+  "rasterFunction":"Hillshade",
+  "rasterFunctionArguments": {
+    "Azimuth":315,
+    "Altitude":45,
+    "ZFactor":1
+  },"variableName":"DEM"
+};
+
+var dem = L.esri.imageMapLayer({
+  url: 'https://gis.arkansas.gov/arcgis/rest/services/ImageServices/DEM_1M_2018/ImageServer',
+  renderingRule: renderingRule
+});
+
+
+
+
+
+
+
+var reachesLayer = L.geoJson(null);
+var reaches = L.geoJson(null, {
+    onEachFeature: function (feature, layer)
+  {
+    layer.bindPopup(" ")
+    layer.on({
+      click: function (e) {
+        $("#feature_modal").modal("show");
+        $('#feature_modal_body').html("<iframe width='1120' height='630' src='" + feature.properties.URL + "' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
+        //$('#feature_modal_body').html("");
+        //$('#feature_modal_title').html(feature.properties.parcel_id);
+      }
+    })
+  },
+  style: function (feature){
+      return {
+        color: '#E25822',
+        weight: '1.5',
+        fillOpacity: 0.5
+      }
+    }
+}).addTo(map);
+
+$.getJSON("reaches.geojson", function (data){
+  reaches.addData(data);
+});
+
+
+
+
+/* Parcels Layer */
+function onEach_parcel (feature, layer) {
+  layer.on({
+    click: function (e) {
+      $("#feature_modal").modal("show");
+      //$('#feature_modal_body').html("");
+      //$('#feature_modal_title').html(feature.properties.parcel_id);
+    }
+  })
+}
+
+map.createPane('pane_parcels');
+//map.getPane('pane_parcels').style['mix-blend-mode'] = 'normal';
+var parcels = L.esri.featureLayer({
+  url: 'https://gis.arkansas.gov/arcgis/rest/services/FEATURESERVICES/Planning_Cadastre/FeatureServer/6',
+  simplifyFactor: 0.35,
+  precision: 5,
+  fields: ['OBJECTID',
+          'parcel_id',
+          'ow_name',
+          'assess_val',
+          'land_val',
+          'ph_add'],
+  pane: 'pane_parcels',
+  minZoom: 16,
+  style: {
+    color: '#A9A9A9',
+    weight: 1,
+  },
+  onEachFeature: onEach_parcel
+
+});
+
+
+
+/* AGIO Geocoder*/
+var agioGeocoder = window.L.esri.Geocoding.geocodeServiceProvider({
+  url: 'https://gis.arkansas.gov/arcgis/rest/services/Locator/ASDI_Composite_Locator/GeocodeServer'
+});
+
+var searchControl = window.L.esri.Geocoding.geosearch({
+  providers: [agioGeocoder],
+  position: 'topleft',
+  zoomToResult: true,
+  useMapBounds: false,
+  allowMultipleResults: false,
+  expanded: true
+}).addTo(map);
+
+
+// Identify Elevation
+var identifiedPixel;
+var pane = document.getElementById('pixelValue');
+
+map.on('click', function (e) {
+    if(identifiedPixel){
+        pane.innerHTML = 'Loading';
+    }
+    dem.identify().at(e.latlng).run(function(error, results){
+        identifiedPixel = results.pixel;
+        pane.innerHTML = identifiedPixel.properties.value + 'm';
+    });
+});
+
+
+/// Measure tool
+options = {
+  position: 'bottomright'
+}
+
+L.control.polylineMeasure(options).addTo(map);
+
+
+//Layer Control
+var baseMaps = {
+    "Aerial": esri_aerial_firefly,
+    "Hillshade DEM": dem,
+    //"OSM": osm,
+
+};
+
+var overlayMaps = {};
+
+L.control.layers(baseMaps, overlayMaps, {collapsed:false, position:'bottomleft'}).addTo(map);
+
+
+
+</script>
+
+</body>
+</html>
