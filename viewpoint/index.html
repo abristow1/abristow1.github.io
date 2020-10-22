@@ -140,7 +140,6 @@ var reachesLayer = L.geoJson(null);
 var reaches = L.geoJson(null, {
     onEachFeature: function (feature, layer)
   {
-    layer.bindPopup(" ")
     layer.on({
       click: function (e) {
         $("#feature_modal").modal("show");
@@ -150,13 +149,97 @@ var reaches = L.geoJson(null, {
       }
     })
   },
-  style: function (feature){
-      return {
-        color: '#E25822',
-        weight: '1.5',
-        fillOpacity: 0.5
+  style: function (feature) {
+    switch (feature.properties.NAME) {
+        case 'DarkBlue':
+          return {
+            weight: '0.0',
+            fillColor: '#be0032',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Green':
+          return {
+            weight: '0.0',
+            fillColor: '#dcd300',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'LightBlue':
+          return {
+            weight: '0.0',
+            fillColor: '#8db600',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'LightGreen':
+          return {
+            weight: '0.0',
+            fillColor: '#0067a5',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Pink':
+          return {
+            weight: '0.0',
+            fillColor: '#875692',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Purple':
+          return {
+            weight: '0.0',
+            fillColor: '#a1caf1',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Red':
+          return {
+            weight: '0.0',
+            fillColor: '#a1caf1',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
+        case 'Yellow':
+          return {
+            weight: '0.0',
+            fillColor: '#a1caf1',
+            color: '#000000',
+            weight: '0.0',
+            dashArray: '',
+            opacity: '1.0',
+            fillOpacity: '0.7',
+          };
+          break;
       }
-    }
 }).addTo(map);
 
 $.getJSON("reaches.geojson", function (data){
