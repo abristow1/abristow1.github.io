@@ -55,7 +55,11 @@ No issues streaming the ESRI REST layer to a d3 graph. Issue with usable graph
        overflow-y: auto;
        overflow-x: auto;
        width: auto;
-       min-width: 300px;
+       min-width: 75%;
+    }
+        iframe {
+        width:100%;
+        height:500px;
     }
     circle {
       fill: gold;
@@ -164,7 +168,7 @@ var reaches = L.geoJson(null, {
     layer.on({
       click: function (e) {
         $("#feature_modal").modal("show");
-        $('#feature_modal_body').html("<iframe width='75%' height='75%' src='" + feature.properties.URL + "' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
+        $('#feature_modal_body').html("<iframe src='" + feature.properties.URL + "' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen></iframe>");
         //$('#feature_modal_body').html("");
         //$('#feature_modal_title').html(feature.properties.parcel_id);
       }
