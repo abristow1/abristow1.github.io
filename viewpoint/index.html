@@ -118,6 +118,10 @@ var esri_aerial_firefly = L.esri.basemapLayer('ImageryFirefly').addTo(map);
 
 var transportation = L.esri.basemapLayer('ImageryTransportation').addTo(map);
 
+var adop = L.esri.imageMapLayer({
+url: 'https://gis.arkansas.gov/arcgis/rest/services/ImageServices/IMAGERY_1FT_2017/ImageServer'
+});
+
 ///Hillshade DEM
 var renderingRule = {
   "rasterFunction":"Hillshade",
@@ -350,6 +354,7 @@ L.control.polylineMeasure(options).addTo(map);
 //Layer Control
 var baseMaps = {
     "Aerial": esri_aerial_firefly,
+    "ADOP 2017": adop,
     "Hillshade DEM": dem,
     //"OSM": osm,
 
