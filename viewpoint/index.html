@@ -317,7 +317,7 @@ var parcels = L.esri.featureLayer({
 
 
 
-/* AGIO Geocoder*/
+/* AGIO Geocoder
 var agioGeocoder = window.L.esri.Geocoding.geocodeServiceProvider({
   url: 'https://gis.arkansas.gov/arcgis/rest/services/Locator/ASDI_Composite_Locator/GeocodeServer'
 });
@@ -330,9 +330,9 @@ var searchControl = window.L.esri.Geocoding.geosearch({
   allowMultipleResults: false,
   expanded: true
 }).addTo(map);
+*/
 
-
-// Identify Elevation
+/* Identify Elevation
 var identifiedPixel;
 var pane = document.getElementById('pixelValue');
 
@@ -345,15 +345,15 @@ map.on('click', function (e) {
         pane.innerHTML = identifiedPixel.properties.value + 'm';
     });
 });
+*/
 
-
-/// Measure tool
+/* Measure tool
 options = {
   position: 'bottomright'
 }
 
 L.control.polylineMeasure(options).addTo(map);
-
+*/
 
 //Layer Control
 var baseMaps = {
